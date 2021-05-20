@@ -1,0 +1,56 @@
+#mainSection {
+	background-image: url("../../assets/frontimage.jpg");
+	height: 650px;
+	width: 100%;
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+}
+#contentContainer {
+	height: 100%;
+	padding-top: 95px;
+	padding-bottom: 50px;
+	width: 90%;
+}
+
+.contentParagraph {	
+	font-style: italic;
+	color: #8c000a;
+	font-size: 28px;
+	text-shadow: 2px 2px #fff;
+	font-weight: bold;
+}
+
+#inputButton {
+	background: none;
+	padding: 0px;
+	margin-top: 160px;
+	height: 60px;
+	width: 35%;
+	border: 3px solid #8c000a;
+	border-radius: 4px;
+}
+
+#searchInput {
+	background: #ffffff9c;
+	margin: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	height: 100%;
+	width: 75%;
+	border: none;
+	outline: none;
+	font-weight: 600;
+}
+#searchButton {
+	background: #8c000a;
+	height: 100%;
+	width: 25%;
+	cursor: pointer;
+	border: none;
+	color: #fff;
+	outline: none;
+	transition: all 0.3s ease;
+}
