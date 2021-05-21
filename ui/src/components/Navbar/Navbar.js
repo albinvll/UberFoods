@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { MenuItems } from "./MenuItems";
 import "./Navbar.css";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Navbar extends PureComponent {
 	state = {
@@ -14,7 +14,7 @@ class Navbar extends PureComponent {
 
 	onSignInButtonClick = (event) => {
 		event.preventDefault();
-		console.log(this.props.history)
+		console.log(this.props.history);
 	};
 
 	render() {

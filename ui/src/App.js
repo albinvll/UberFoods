@@ -3,9 +3,9 @@ import { Route } from 'react-router';
 //import requireAuth from './components/ProtectedRoute';
 
 import './App.css'
-import FrontPage from './components/FrontPage';
+/*import FrontPage from './components/FrontPage';
 import SignIn from './components/SignIn/SignIn';
-import Food from './components/Foods/Food';
+import Food from './components/Foods/Food';*/
 
 import Order from './components/Order/Order';
 
