@@ -53,7 +53,8 @@ export default class Order extends PureComponent {
         cardNumber:"",
         cardName:"",
         cardDate:"",
-        cardCVV:""
+        cardCVV:"",
+        selectedRestaurant:""
 
 	};
 	onCityChangeText = (event) => {
@@ -75,6 +76,7 @@ export default class Order extends PureComponent {
         this.setState({cardCVV:event.target.value});
     }
 
+
 	handleChangeCheckBox = async (event, food) => {
 		const isChecked = event.target.checked;
 		if (isChecked) {
@@ -91,6 +93,14 @@ export default class Order extends PureComponent {
 		this.calculateSum();
 	};
 
+
+    handleChangeRestaurant = async (event, location) => {
+		await this.setState({selectedRestaurant:event.target.value});
+
+        console.log(this.state.selectedRestaurant);
+		
+	};
+
 	calculateSum = async () => {
 		if (!(this.state.selectedArticles.length > 0)) {
 			await this.setState({ selectedSum: 0 });
@@ -102,6 +112,8 @@ export default class Order extends PureComponent {
 		}
 		await this.setState({ selectedSum: sum });
 	};
+
+    
 	render() {
 		return (
 			<div>
@@ -128,9 +140,15 @@ export default class Order extends PureComponent {
 								onChange={this.onCityChangeText}
 							/>
 							Restaurant
-							<select id="order-input-selected">
+							<select id="order-input-selected" onChange={this.handleChangeRestaurant}>
 								{this.state.selectedLocation.map((location) => (
-									<option key={location.id}>
+									<option key={location.id}
+                                    /*onChange={(event) =>
+                                        this.handleChangeRestaurant(
+                                            event,
+                                            location
+                                        )
+                                    }*/>
 										{location.pershkrimi}
 									</option>
 								))}
@@ -175,7 +193,7 @@ export default class Order extends PureComponent {
 								id="order-input"
 								type="number"
                                 value={this.state.cardNumber}
-                                onChange={this.state.onCardNumberText}
+                                onChange={this.onCardNumberText}
 							/>
 							Credit Card Name
 							<input
@@ -183,7 +201,7 @@ export default class Order extends PureComponent {
 								id="order-input"
 								type="text"
                                 value={this.state.cardName}
-                                onChange={this.state.onCardNameText}
+                                onChange={this.onCardNameText}
 							/>
 							Exp Date
 							<input
@@ -191,7 +209,7 @@ export default class Order extends PureComponent {
 								id="order-input"
 								type="text"
                                 value={this.state.cardDate}
-                                onChange={this.state.onCardDateText}
+                                onChange={this.onCardDateText}
 							/>
 							CVV
 							<input
@@ -199,7 +217,7 @@ export default class Order extends PureComponent {
 								id="order-input"
 								type="text"
                                 value={this.state.cardCVV}
-                                onChange={this.state.onCardCVVText}
+                                onChange={this.onCardCVVText}
 							/>
 						</form>
 
