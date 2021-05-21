@@ -99,7 +99,7 @@ export default class Order extends PureComponent {
 							<input
 								id="order-input"
 								type="text"
-								value={this.city}
+								value={this.state.city}
 								onChange={this.onCityChangeText}
 							/>
 							Restaurant
