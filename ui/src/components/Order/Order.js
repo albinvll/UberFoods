@@ -46,13 +46,34 @@ export default class Order extends PureComponent {
 				pershkrimi: "Credit Card",
 			},
 		],
-		city: "",
 		selectedArticles: [],
 		selectedSum: 0,
+        personName: "",
+        city: "",
+        cardNumber:"",
+        cardName:"",
+        cardDate:"",
+        cardCVV:""
+
 	};
 	onCityChangeText = (event) => {
 		this.setState({ city: event.target.value });
 	};
+    onPersonNameText=(event)=>{
+        this.setState({personName:event.target.value});
+    }
+    onCardNumberText=(event)=>{
+        this.setState({cardNumber:event.target.value});
+    }
+    onCardNameText=(event)=>{
+        this.setState({cardName:event.target.value});
+    }
+    onCardDateText=(event)=>{
+        this.setState({cardDate:event.target.value});
+    }
+    onCardCVVText=(event)=>{
+        this.setState({cardCVV:event.target.value});
+    }
 
 	handleChangeCheckBox = async (event, food) => {
 		const isChecked = event.target.checked;
@@ -94,7 +115,11 @@ export default class Order extends PureComponent {
 						<br />
 						<form action="">
 							Full name
-							<input id="order-input" type="text" />
+							<input 
+                                id="order-input" 
+                                type="text" 
+                                value={this.state.personName}
+                                onChange={this.onPersonNameText}/>
 							City
 							<input
 								id="order-input"
@@ -149,24 +174,32 @@ export default class Order extends PureComponent {
 								placeholder="1234 1234 1234"
 								id="order-input"
 								type="number"
+                                value={this.state.cardNumber}
+                                onChange={this.state.onCardNumberText}
 							/>
 							Credit Card Name
 							<input
 								placeholder="John John"
 								id="order-input"
 								type="text"
+                                value={this.state.cardName}
+                                onChange={this.state.onCardNameText}
 							/>
 							Exp Date
 							<input
 								placeholder="04/24"
 								id="order-input"
 								type="text"
+                                value={this.state.cardDate}
+                                onChange={this.state.onCardDateText}
 							/>
 							CVV
 							<input
 								placeholder="123"
 								id="order-input"
 								type="text"
+                                value={this.state.cardCVV}
+                                onChange={this.state.onCardCVVText}
 							/>
 						</form>
 
