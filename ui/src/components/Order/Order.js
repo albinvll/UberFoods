@@ -96,9 +96,7 @@ export default class Order extends PureComponent {
 
     handleChangeRestaurant = async (event, location) => {
 		await this.setState({selectedRestaurant:event.target.value});
-
         console.log(this.state.selectedRestaurant);
-		
 	};
 
 	calculateSum = async () => {
