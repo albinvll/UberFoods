@@ -20,7 +20,7 @@
 }
 
 .order-right-side{
-    padding-top: 105px;
+    padding-top: 68px;
     padding-left: 20px;
     height: auto;
     width: 50%;
@@ -71,7 +71,7 @@
 .order-checkbox{
     display: flex;
     justify-content: start;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 #order-checkbox{
@@ -88,4 +88,8 @@
     margin-right: 20px;
     font-weight: bold;
     font-size: 15px;
+}
+
+.order-total{
+    
 }

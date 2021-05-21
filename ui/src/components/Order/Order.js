@@ -33,7 +33,7 @@ export default class Order extends PureComponent {
             Id: 3,
             Pershkrimi: "Standard Hamburger",
             Cmimi: 1,
-        }],
+        },],
         
         paymentMethod:[{
             Id:1,
@@ -41,9 +41,7 @@ export default class Order extends PureComponent {
         }
         ],
 
-        selectedArticles:[],
-
-        checkBox: false
+        selectedArticles:[]
     }
 
     
@@ -84,13 +82,11 @@ export default class Order extends PureComponent {
                                 {this.state.availableArticles.map((food, index) => (
                                     <label id="checkbox-label">
                                         <input onChange={()=>{
-                                            this.setState({checkBox: !this.state.checkBox})
-                                            if(!this.state.checkBox){
-                                                var arrayArticles = this.state.selectedArticles;
-                                                arrayArticles.push(food.Id);
-                                                this.setState({selectedArticles: arrayArticles})
-                                                console.log(this.state.selectedArticles);
-                                            }
+                                            var arrayArticles = this.state.selectedArticles;
+                                            arrayArticles.push(food);
+                                            this.setState({selectedArticles: arrayArticles})
+                                            console.log(this.state.selectedArticles);
+                                            
                                         }} id="order-checkbox" type="checkbox"/>
                                         {food.Pershkrimi}
                                     </label>
@@ -101,16 +97,23 @@ export default class Order extends PureComponent {
                     </div>
 
                     <div className="order-right-side">
+                        <p id="order-desc">Please full fill your credit card informations below :</p>
                         <form action="">
-                            Credit card number
-                            <input  id="order-input" type="number" />
-                            Credit card name
-                            <input  id="order-input" type="text" />
-                            Exp date
-                            <input placeholder="Exp date" id="order-input" type="text" />
+                            Number
+                            <input placeholder="1234 1234 1234" id="order-input" type="number" />
+                            Name
+                            <input placeholder="John John" id="order-input" type="text" />
+                            Date
+                            <input placeholder="04/24" id="order-input" type="text" />
                             CVV
-                            <input placeholder="CVV" id="order-input" type="text" />
+                            <input placeholder="123" id="order-input" type="text" />
                         </form>
+
+                        <div className="order-total">
+                            <p id="order-desc">Total shuma: {this.state.selectedArticles.map((selectedFood,index)=>(
+                                <p>{selectedFood.Cmimi}</p>
+                            ))}</p>
+                        </div>
                     </div>
                 </section>
             </div>
