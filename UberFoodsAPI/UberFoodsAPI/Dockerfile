@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["UberFoodsAPI/UberFoodsAPI.csproj", "UberFoodsAPI/"]
-RUN dotnet restore "UberFoodsAPI/UberFoodsAPI.csproj"
+COPY ["UberFoodsAPI.csproj", "."]
+RUN dotnet restore "./UberFoodsAPI.csproj"
 COPY . .
-WORKDIR "/src/UberFoodsAPI"
+WORKDIR "/src/."
 RUN dotnet build "UberFoodsAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
