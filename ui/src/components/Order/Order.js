@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import "./Order.css";
-import axios from "axios";
 import client from "../../axios";
 
 export default class Order extends PureComponent {
@@ -8,7 +7,7 @@ export default class Order extends PureComponent {
 	componentDidMount() {
 		client.get("Restaurant/getRestaurant")
 		.then((response) => {
-			setState({selectedLocation: response.data})
+			this.setState({selectedLocation: response.data})
 		});
 	}
 
@@ -101,11 +100,11 @@ export default class Order extends PureComponent {
 
 
     handleChangeRestaurant = async (event, location) => {
-		await this.setState({selectedRestaurant:event.target.value});
-        console.log(this.state.selectedRestaurant);
-		client.get("Articles/getArticlesFromRestaurantId", {params: {menuId: menuId}})
+		const selectedRestaurantId = event.target.value.split("|")[0];
+		await this.setState({selectedRestaurant:selectedRestaurantId});;
+		client.get("Articles/getArticlesFromRestaurantId", {params: {menuId:selectedRestaurantId}})
 		.then((response) => {
-			setState({availableArticles: response.data})
+			this.setState({availableArticles: response.data})
 		});
 	};
 
@@ -157,7 +156,7 @@ export default class Order extends PureComponent {
                                             location
                                         )
                                     }*/>
-										{location.pershkrimi}
+										{location.menuId| location.description}
 									</option>
 								))}
 							</select>
@@ -182,7 +181,7 @@ export default class Order extends PureComponent {
 											id="order-checkbox"
 											type="checkbox"
 										/>
-										{food.pershkrimi}
+										{food.description}
 									</label>
 								))}
 							</div>
