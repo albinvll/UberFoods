@@ -1,26 +1,32 @@
 import React, { PureComponent } from "react";
 import "./Order.css";
+import axios from "axios";
+import client from "../../axios";
 
 export default class Order extends PureComponent {
+	
+	componentDidMount() {
+		client.get("Restaurant/getRestaurant")
+		.then((response) => {
+			setState({selectedLocation: response.data})
+		});
+	}
+
+	/*
+	componentDidMount() {
+		client.get("Articles/getArticlesFromRestaurantId", {params: {menuId: menuId}})
+		.then((response) => {
+			setState({availableArticles: response.data})
+		});
+	}
+	*/
+
 	state = {
 		selectedLocation: [
-			{
-				id: 1,
-				korporataID: 11,
-				pershkrimi: "Restaurant Arty",
-				adresaId: 101,
-				nrTelefonit: "+38349101101",
-				menuId: 12,
-			},
-			{
-				id: 2,
-				korporataID: 22,
-				pershkrimi: "Fast Food Gjenisi",
-				adresaId: 202,
-				nrTelefonit: "+38349101102",
-				menuId: 24,
-			},
+			
 		],
+
+
 
 		availableArticles: [
 			{
@@ -97,6 +103,10 @@ export default class Order extends PureComponent {
     handleChangeRestaurant = async (event, location) => {
 		await this.setState({selectedRestaurant:event.target.value});
         console.log(this.state.selectedRestaurant);
+		client.get("Articles/getArticlesFromRestaurantId", {params: {menuId: menuId}})
+		.then((response) => {
+			setState({availableArticles: response.data})
+		});
 	};
 
 	calculateSum = async () => {
