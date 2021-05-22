@@ -12,10 +12,11 @@ namespace UberFoodsAPI.Controllers
     public class ArticlesController : ControllerBase
     {
         [HttpGet("getArticlesFromRestaurantId")]
-        public List<Article> GetArticlesFromMenuId([FromQuery] int menuId) {
+        public List<Article> GetArticlesFromMenuId([FromQuery] int menuId)
+        {
             DataTable articlesTable = ArticlesData.GetArticlesWithMenuId(menuId);
             List<Article> articlesList = new List<Article>(articlesTable.Rows.Count);
-            foreach(DataRow dr in articlesTable.Rows)
+            foreach (DataRow dr in articlesTable.Rows)
             {
                 Article temp = new Article();
                 temp.Id = Convert.ToInt64(dr["Id"].ToString());

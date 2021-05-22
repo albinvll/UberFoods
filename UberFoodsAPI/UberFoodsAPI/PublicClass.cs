@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace UberFoodsAPI
+﻿namespace UberFoodsAPI
 {
     public static class PublicClass
     {
-        public static string ConnectionString = "Server=DESKTOP-8F04IE5\\SQLEXPRESS;Database=UBF;Integrated Security=True;";
+        public static string ConnectionString = "Data Source = .\\SQLEXPRESS; Initial Catalog = UBF; User ID=albin; Password=albin";
     }
 }
