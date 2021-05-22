@@ -13,7 +13,7 @@ namespace UberFoodsAPI.Models
         public long CorporateId {
             get; set;
         }
-        public string DescriptionId {
+        public string Description {
             get; set;
         } 
         public long AddressId
