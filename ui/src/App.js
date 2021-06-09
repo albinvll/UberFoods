@@ -8,6 +8,8 @@ import SignIn from './components/SignIn/SignIn';
 import Food from './components/Foods/Food';*/
 
 import Order from './components/Order/Order';
+import LoginForm from './components/Login'
+import Register from './components/Register';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -16,6 +18,8 @@ export default class App extends Component {
     return (
       <>
         <Route exact path='/' component={Order} />
+        <Route exact path='/login' component={LoginForm} />
+        <Route exact path='/signup' component={Register} />
       {/* 
         <Route exact path='/' component={FrontPage} />
         <Route exact path='/sign-in' component={SignIn} />
