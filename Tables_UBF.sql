@@ -1,5 +1,6 @@
 CREATE TABLE Adresa(
 	Id bigint PRIMARY KEY IDENTITY(100,25) NOT NULL,
+	Pershkrimi varchar(255),
 	X decimal(18,12),
 	Y decimal(18,12),
 	Z decimal(18,12),
@@ -38,6 +39,15 @@ CREATE TABLE Derguesi(
 	Rating decimal(18,2),
 	CONSTRAINT[FK_Derguesi_Perdoruesi_PerdoruesiId] FOREIGN KEY(PerdoruesiId) REFERENCES Perdoruesi(Id),
 	CONSTRAINT[FK_Derguesi_MenyraDergeses_MenyraDergesesId] FOREIGN KEY(MenyraDergesesId) REFERENCES MenyraDergeses(Id)
+)
+
+CREATE TABLE Menaxhuesi(
+	Id bigint PRIMARY KEY IDENTITY(100,25) NOT NULL,
+	PerdoruesiId bigint NOT NULL,
+	KorporataId bigint not null,
+	CONSTRAINT[FK_Derguesi_Perdoruesi_PerdoruesiId] FOREIGN KEY(PerdoruesiId) REFERENCES Perdoruesi(Id),
+	CONSTRAINT[Fk_Menaxhuesi_Korporata_KorporataId] FOREIGN KEY(KorporataId) REFERENCES Korporata(Id),
+	CONSTRAINT[FK_Menaxhuesi_MenyraDergeses_MenyraDergesesId] FOREIGN KEY(MenyraDergesesId) REFERENCES MenyraDergeses(Id)
 )
 
 CREATE TABLE Korporata(

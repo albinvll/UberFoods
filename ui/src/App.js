@@ -8,8 +8,8 @@ import SignIn from './components/SignIn/SignIn';
 import Food from './components/Foods/Food';*/
 
 import Order from './components/Order/Order';
-import LoginForm from './components/Login'
-import Register from './components/Register';
+import LoginForm from './components/Auth/Login'
+import Register from './components/Auth/Register';
 
 export default class App extends Component {
   static displayName = App.name;
