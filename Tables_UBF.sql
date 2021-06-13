@@ -1,9 +1,9 @@
 CREATE TABLE Adresa(
 	Id bigint PRIMARY KEY IDENTITY(100,25) NOT NULL,
-	Pershkrimi varchar(255),
 	X decimal(18,12),
 	Y decimal(18,12),
 	Z decimal(18,12),
+	Pershkrimi varchar(255)
 )
 
 CREATE TABLE Perdoruesi(

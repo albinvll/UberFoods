@@ -21,3 +21,28 @@ SELECT Id
 	  FROM Pika P
 	  WHERE @PikaId is null or @PikaId = P.Id
 END
+
+CREATE PROCEDURE PorositesiInsert_sp(
+	@Emri varchar(255),
+	@Mbiemri varchar(255),
+	@Email varchar(255),
+	@AdresaPershkrimi varchar(255),
+	@MenyraPagesesId int,
+	@AdresaX decimal(18,12),
+	@AdresaY decimal(18,12),
+	@AdresaZ decimal(18,12)
+)AS BEGIN
+	declare @AdresaEReID bigint
+
+	INSERT INTO Adresa VALUES(@AdresaX,@AdresaY,@AdresaZ,@AdresaPershkrimi)
+
+	select @AdresaEReID=MAX(Id) from Adresa
+	
+	declare @PerdoruesiIRi bigint
+	
+	INSERT INTO Perdoruesi VALUES(@Emri,@Mbiemri,@Email,@AdresaEReID)
+
+	select @PerdoruesiIRi=MAX(Id) from Perdoruesi
+	
+	INSERT INTO Porositesi VALUES(@PerdoruesiIRi,@MenyraPagesesId)
+END
