@@ -11,6 +11,7 @@ import Order from './components/Order/Order';
 import LoginForm from './components/Auth/Login'
 import Register from './components/Auth/Register';
 import Dashboard from './components/Dashboard/Dashboard';
+import AddRestaurant from './components/Dashboard/Pages/AddRestaurant';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -22,6 +23,7 @@ export default class App extends Component {
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/signup' component={Register} />
         <Route exact path='/dashboard' component={Dashboard} />
+        <Route exact path='/add/restaurant' component={AddRestaurant} />
       {/* 
         <Route exact path='/' component={FrontPage} />
         <Route exact path='/sign-in' component={SignIn} />

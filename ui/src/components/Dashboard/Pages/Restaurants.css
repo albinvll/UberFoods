@@ -9,3 +9,12 @@
     border: 2px solid white;
     padding: 10px;
 }
+
+.tooltip-button{
+    align-self: flex-end;
+}
+
+.tool-tip{
+    display: flex;
+    justify-content: end;
+}

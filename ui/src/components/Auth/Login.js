@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container,Avatar,Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid,Box, Typography, makeStyles } from '@material-ui/core/';
+import {Container,Avatar,Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid,Box, Typography, makeStyles, MenuItem,FormControl,Select,InputLabel } from '@material-ui/core/';
 
   
   const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,11 @@ export default function Login() {
     const classes = useStyles();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [accountType, setAccountType] = useState('');
 
+    const onTypeText=(event)=>{
+      setAccountType(event.target.value);
+    }
 
     const onEmailText = event =>{
       setEmail(event.target.value);
@@ -67,10 +71,23 @@ export default function Login() {
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
+
+          <FormControl variant="outlined" className={classes.form}>
+                <InputLabel id="demo-simple-select-outlined-label">Account type</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  required
+                  id="demo-simple-select-outlined"
+                  value={accountType}
+                  onChange={onTypeText}
+                  label="Account type"
+                >
+                  <MenuItem value={'Orderer'}>Orderer</MenuItem>
+                  <MenuItem value={'Delivery'}>Delivery</MenuItem>
+                  <MenuItem value={'Corporate'}>Corporate</MenuItem>
+                </Select>
+              </FormControl>
+
           <Button
             type="submit"
             fullWidth
