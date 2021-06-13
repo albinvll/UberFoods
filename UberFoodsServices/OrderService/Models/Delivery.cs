@@ -8,8 +8,5 @@ namespace OrderService.Models
     public class Delivery:Account
     {
         public string DeliveryType { get; set; }
-        public Delivery(Account account, string deliveryType) : base(account) {
-            this.DeliveryType = deliveryType;
-        }
     }
 }

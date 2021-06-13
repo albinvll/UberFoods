@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace OrderService.Models
 {
-    public class Orderer : Account
+    public class NewManager
     {
-        public int PaymentType { get; set; }
+        public Corporate Corporate { get; set; }
+        public Account Account { get; set; }
     }
 }
