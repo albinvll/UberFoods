@@ -78,5 +78,51 @@ CREATE PROCEDURE DerguesiInsert_sp(
 	insert into Derguesi values(@PerdoruesiIRi,@MenyraDergesesEReID,5.0)
 END
 
+CREATE PROCEDURE Menaxhuesiinsert_sp(
+	@AdresaPershkrimi varchar(255),
+	@AdresaX decimal(18,12),
+	@AdresaY decimal(18,12),
+	@AdresaZ decimal(18,12),
+	@Emri varchar(255),
+	@Mbiemri varchar(255),
+	@Email varchar(255),
+	@KorporataPershkrimi varchar (255),
+	@KorporataEmail varchar(255),
+	@Komuna varchar(255),
+	@PerdoruesiID bigint,
+	@KorporataID bigint,
+
+
+
+)AS BEGIN
+	declare @AdresaEReID bigint
+
+	INSERT INTO Adresa VALUES(@AdresaX,@AdresaY,@AdresaZ,@AdresaPershkrimi)
+
+	select @AdresaEReID=MAX(Id) from Adresa
+	
+	declare @PerdoruesiIRi bigint
+	
+	INSERT INTO Perdoruesi VALUES(@Emri,@Mbiemri,@Email,@AdresaEReID)
+
+	select @PerdoruesiIRi=MAX(Id) from Perdoruesi
+
+	declare @KorporataEReID bigint
+	 
+	INSERT INTO Korporata  Values(@KorporataPershkrimi,@KorporataEmail,@Komuna)
+
+	select @KorporataEReID=MAX(id) from Korporata
+
+	
+	insert into Menaxhuesi values(@PerdoruesiID,@KorporataID)
+
+	
+	END
+
+
+
+
+
+
 	
 	
