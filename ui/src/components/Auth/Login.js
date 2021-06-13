@@ -26,7 +26,7 @@ export default function Login() {
     const classes = useStyles();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [accountType, setAccountType] = useState('');
+    const [accountType, setAccountType] = useState(1);
 
     const onTypeText=(event)=>{
       setAccountType(event.target.value);
@@ -59,6 +59,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={onEmailText}
           />
           <TextField
             variant="outlined"
@@ -70,6 +71,7 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={onPasswordText}
           />
 
           <FormControl variant="outlined" className={classes.form}>
@@ -82,9 +84,9 @@ export default function Login() {
                   onChange={onTypeText}
                   label="Account type"
                 >
-                  <MenuItem value={'Orderer'}>Orderer</MenuItem>
-                  <MenuItem value={'Delivery'}>Delivery</MenuItem>
-                  <MenuItem value={'Corporate'}>Corporate</MenuItem>
+                  <MenuItem value={1}>Orderer</MenuItem>
+                  <MenuItem value={2}>Delivery</MenuItem>
+                  <MenuItem value={3}>Corporate</MenuItem>
                 </Select>
               </FormControl>
 
