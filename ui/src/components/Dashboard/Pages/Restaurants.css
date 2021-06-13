@@ -1,0 +1,11 @@
+.modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.open{
+    background-color: red;
+    border: 2px solid white;
+    padding: 10px;
+}

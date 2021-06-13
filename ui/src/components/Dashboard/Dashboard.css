@@ -1,0 +1,13 @@
+.mainSection{
+    display: flex;
+    flex-direction: row;
+    width:auto;
+    padding: 10px;
+}
+.drawer-container{
+    width: 14%;
+}
+
+.left-content-container{
+    width: 86%;
+}
