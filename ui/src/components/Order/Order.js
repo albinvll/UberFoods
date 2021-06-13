@@ -1,49 +1,19 @@
 import React, { PureComponent } from "react";
 import "./Order.css";
 import client from "../../axios";
+import { Dropdown } from "react-bootstrap";
 
 export default class Order extends PureComponent {
-	
 	componentDidMount() {
-		client.get("Restaurant/getRestaurant")
-		.then((response) => {
-			this.setState({selectedLocation: response.data})
+		client.get("Restaurant/getRestaurant").then((response) => {
+			this.setState({ selectedLocation: response.data });
 		});
 	}
-
-	/*
-	componentDidMount() {
-		client.get("Articles/getArticlesFromRestaurantId", {params: {menuId: menuId}})
-		.then((response) => {
-			setState({availableArticles: response.data})
-		});
-	}
-	*/
 
 	state = {
-		selectedLocation: [
-			
-		],
+		selectedLocation: [],
 
-
-
-		availableArticles: [
-			{
-				id: 1,
-				pershkrimi: "Hamburger double",
-				cmimi: 2.5,
-			},
-			{
-				id: 2,
-				pershkrimi: "Hamburger pule",
-				cmimi: 2,
-			},
-			{
-				id: 3,
-				pershkrimi: "Standard Hamburger",
-				cmimi: 1,
-			},
-		],
+		availableArticles: [],
 
 		paymentMethod: [
 			{
@@ -53,34 +23,32 @@ export default class Order extends PureComponent {
 		],
 		selectedArticles: [],
 		selectedSum: 0,
-        personName: "",
-        city: "",
-        cardNumber:"",
-        cardName:"",
-        cardDate:"",
-        cardCVV:"",
-        selectedRestaurant:""
-
+		personName: "",
+		city: "",
+		cardNumber: "",
+		cardName: "",
+		cardDate: "",
+		cardCVV: "",
+		selectedRestaurant: "",
 	};
 	onCityChangeText = (event) => {
 		this.setState({ city: event.target.value });
 	};
-    onPersonNameText=(event)=>{
-        this.setState({personName:event.target.value});
-    }
-    onCardNumberText=(event)=>{
-        this.setState({cardNumber:event.target.value});
-    }
-    onCardNameText=(event)=>{
-        this.setState({cardName:event.target.value});
-    }
-    onCardDateText=(event)=>{
-        this.setState({cardDate:event.target.value});
-    }
-    onCardCVVText=(event)=>{
-        this.setState({cardCVV:event.target.value});
-    }
-
+	onPersonNameText = (event) => {
+		this.setState({ personName: event.target.value });
+	};
+	onCardNumberText = (event) => {
+		this.setState({ cardNumber: event.target.value });
+	};
+	onCardNameText = (event) => {
+		this.setState({ cardName: event.target.value });
+	};
+	onCardDateText = (event) => {
+		this.setState({ cardDate: event.target.value });
+	};
+	onCardCVVText = (event) => {
+		this.setState({ cardCVV: event.target.value });
+	};
 
 	handleChangeCheckBox = async (event, food) => {
 		const isChecked = event.target.checked;
@@ -98,14 +66,17 @@ export default class Order extends PureComponent {
 		this.calculateSum();
 	};
 
-
-    handleChangeRestaurant = async (event, location) => {
-		const selectedRestaurantId = event.target.value.split("|")[0];
-		await this.setState({selectedRestaurant:selectedRestaurantId});;
-		client.get("Articles/getArticlesFromRestaurantId", {params: {menuId:selectedRestaurantId}})
-		.then((response) => {
-			this.setState({availableArticles: response.data})
-		});
+	handleChangeRestaurant = async (event, location) => {
+		console.log("test")
+		await this.setState({ selectedRestaurant: location });
+		client
+			.get("Articles/getArticlesFromRestaurantId", {
+				params: { menuId: location.menuId },
+			})
+			.then((response) => {
+				console.log(response.data)
+				this.setState({ availableArticles: response.data });
+			});
 	};
 
 	calculateSum = async () => {
@@ -115,12 +86,11 @@ export default class Order extends PureComponent {
 		}
 		let sum = 0;
 		for (let i = 0; i < this.state.selectedArticles.length; ++i) {
-			sum += this.state.selectedArticles[i].cmimi;
+			sum += this.state.selectedArticles[i].price;
 		}
 		await this.setState({ selectedSum: sum });
 	};
 
-    
 	render() {
 		return (
 			<div>
@@ -134,11 +104,12 @@ export default class Order extends PureComponent {
 						<br />
 						<form action="">
 							Full name
-							<input 
-                                id="order-input" 
-                                type="text" 
-                                value={this.state.personName}
-                                onChange={this.onPersonNameText}/>
+							<input
+								id="order-input"
+								type="text"
+								value={this.state.personName}
+								onChange={this.onPersonNameText}
+							/>
 							City
 							<input
 								id="order-input"
@@ -147,19 +118,40 @@ export default class Order extends PureComponent {
 								onChange={this.onCityChangeText}
 							/>
 							Restaurant
-							<select id="order-input-selected" onChange={this.handleChangeRestaurant}>
-								{this.state.selectedLocation.map((location) => (
-									<option key={location.id}
-                                    /*onChange={(event) =>
-                                        this.handleChangeRestaurant(
-                                            event,
-                                            location
-                                        )
-                                    }*/>
-										{location.menuId| location.description}
-									</option>
-								))}
-							</select>
+							<div>
+								<Dropdown>
+									<Dropdown.Toggle>
+										{this.state.selectedRestaurant ? (
+											this.state.selectedRestaurant
+												.description
+										) : (
+											<span>Choose</span>
+										)}
+									</Dropdown.Toggle>
+									<Dropdown.Menu>
+										{this.state.selectedLocation.length >
+										0 ? (
+											this.state.selectedLocation.map(
+												(entry, key) => (
+													<Dropdown.Item
+														key={key}
+														onClick={(e) =>
+															this.handleChangeRestaurant(
+																e,
+																entry
+															)
+														}
+													>
+														{entry.description}
+													</Dropdown.Item>
+												)
+											)
+										) : (
+											<></>
+										)}
+									</Dropdown.Menu>
+								</Dropdown>
+							</div>
 							Payment method
 							<select id="order-input-selected">
 								{this.state.paymentMethod.map((payment) => (
@@ -199,32 +191,32 @@ export default class Order extends PureComponent {
 								placeholder="1234 1234 1234"
 								id="order-input"
 								type="number"
-                                value={this.state.cardNumber}
-                                onChange={this.onCardNumberText}
+								value={this.state.cardNumber}
+								onChange={this.onCardNumberText}
 							/>
 							Credit Card Name
 							<input
 								placeholder="John John"
 								id="order-input"
 								type="text"
-                                value={this.state.cardName}
-                                onChange={this.onCardNameText}
+								value={this.state.cardName}
+								onChange={this.onCardNameText}
 							/>
 							Exp Date
 							<input
 								placeholder="04/24"
 								id="order-input"
 								type="text"
-                                value={this.state.cardDate}
-                                onChange={this.onCardDateText}
+								value={this.state.cardDate}
+								onChange={this.onCardDateText}
 							/>
 							CVV
 							<input
 								placeholder="123"
 								id="order-input"
 								type="text"
-                                value={this.state.cardCVV}
-                                onChange={this.onCardCVVText}
+								value={this.state.cardCVV}
+								onChange={this.onCardCVVText}
 							/>
 						</form>
 
