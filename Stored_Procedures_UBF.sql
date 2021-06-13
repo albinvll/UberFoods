@@ -47,7 +47,7 @@ CREATE PROCEDURE PorositesiInsert_sp(
 	INSERT INTO Porositesi VALUES(@PerdoruesiIRi,@MenyraPagesesId)
 END
  
- CREATE PROCEDURE DerguesiInsert_sp(
+CREATE PROCEDURE DerguesiInsert_sp(
 	@AdresaPershkrimi varchar(255),
 	@AdresaX decimal(18,12),
 	@AdresaY decimal(18,12),
@@ -55,10 +55,7 @@ END
 	@Emri varchar(255),
 	@Mbiemri varchar(255),
 	@Email varchar(255),
-	@AdresaPershkrimi varchar(255),
 	@MenyraDergesesPershkrimi varchar(255)
-
-
  )AS BEGIN
 	declare @AdresaEReID bigint
 
@@ -74,14 +71,12 @@ END
 
 	declare @MenyraDergesesEReID bigint
 	
-	insert into MenyraDergeses Values (@Pershkrimi)
+	insert into MenyraDergeses Values (@MenyraDergesesPershkrimi)
 
 	select MenyraDergesesEReID =MAX(id) from MenyraDergeses
 
-	insert into Derguesi values(@Perdoruesi,@MenyraDergeses)
-
-	End
-
+	insert into Derguesi values(@PerdoruesiIRi,@MenyraDergesesEReID,5.0)
+END
 
 	
 	
