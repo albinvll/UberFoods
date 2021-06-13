@@ -1,4 +1,4 @@
-﻿namespace UberFoodsAPI
+﻿namespace ArticleManagement
 {
     public static class PublicClass
     {
