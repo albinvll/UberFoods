@@ -165,9 +165,6 @@ export default function Register() {
                   onChange={onTypeText}
                   label="Account type"
                 >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
                   <MenuItem value={'Orderer'}>Orderer</MenuItem>
                   <MenuItem value={'Delivery'}>Delivery</MenuItem>
                   <MenuItem value={'Corporate'}>Corporate</MenuItem>
@@ -177,15 +174,21 @@ export default function Register() {
 
           {accountType === 'Orderer' ? (
             <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              name="payment"
-              label="Payment method"
-              id="payment"
-              onChange={onPaymentText}
-            />
+            <FormControl variant="outlined" className={classes.form}>
+                <InputLabel id="demo-simple-select-outlined-label">Payment Method</InputLabel>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  required
+                  id="demo-simple-select-outlined"
+                  value={payment}
+                  onChange={onPaymentText}
+                  label="Account type"
+                  defaultValue={'CreditCard'}
+                >
+                  <MenuItem value={'CreditCard'}>Credit Card</MenuItem>
+ 
+                </Select>
+              </FormControl>
             </Grid>
           ) : accountType==='Delivery'?(
             <Grid item xs={12}>

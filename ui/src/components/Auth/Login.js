@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container,Avatar,Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Grid,Box, Typography, makeStyles } from '@material-ui/core/';
 
   
@@ -24,6 +24,17 @@ import {Container,Avatar,Button, CssBaseline, TextField, FormControlLabel, Check
 
 export default function Login() {
     const classes = useStyles();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const onEmailText = event =>{
+      setEmail(event.target.value);
+    }
+
+    const onPasswordText = event =>{
+      setPassword(event.target.value);
+    }
     return (
         <Container component="main" maxWidth="xs">
       <CssBaseline />
