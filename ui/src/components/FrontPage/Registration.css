@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.titleSection{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.content-section{
+    display: flex;
+    width: 100%;
+}
+
+.delivery-container{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.restaurant-container{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h2{
+    color:#7F000B;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#delivery-svg{
+    width: 35%;
+    margin-bottom: 10px;
+}
+
+#restaurant-svg{
+    width: 40%;
+    margin-bottom: 10px;
+}
+#link-id{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+#account-button{
+    width: 40%;
+    height: 50px;
+    border: none;
+    background-color:#0C0C0C;
+    color: #ffff;
+    transition: 0.4s ease;
+}
+
+#account-button:hover{
+    transition: 0.4s ease;
+    background-color: #7F000B;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@media screen and (max-width: 880px){
+    h2{
+
+    }
+    .titleSection{
+        width: 100%;
+        padding: 30px;
+    }
+    .delivery-container{
+        width: 100%;
+    }
+    .restaurant-container{
+        width: 100%;
+    }
+    .content-section{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    #account-button{
+        width: 50%;
+    }
+    .titleSection{
+        text-align: center;
+    }
+}
