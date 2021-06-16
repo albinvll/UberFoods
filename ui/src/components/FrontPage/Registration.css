@@ -71,9 +71,6 @@ h2{
 }
 
 @media screen and (max-width: 880px){
-    h2{
-
-    }
     .titleSection{
         width: 100%;
         padding: 30px;

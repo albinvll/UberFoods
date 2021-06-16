@@ -18,7 +18,7 @@ export default function Registration() {
             <img src={Delivery} id="delivery-svg" />
             <h2>Delivery</h2>
             <p>
-                Start working as a restaurant <br/>
+                Start working as a delivery <br/>
                 
             </p>
             <Link href="/signup" id="link-id">

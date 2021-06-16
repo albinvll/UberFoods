@@ -1,0 +1,89 @@
+.mainSection{
+    width: 1200px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.864), rgba(255, 255, 255, 0.864)), url("../../assets/foodbackground.jpg");
+}
+.titleSection{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.contentSection{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+.food-div{
+    display: flex;
+    justify-content: center;
+    width: 33%;
+    height: auto;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.food-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.food-img img{
+    width: 60%;
+}
+
+#button-food{
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color:#0C0C0C;
+    color: #ffff;
+    transition: 0.4s ease;
+}
+
+#button-food:hover{
+    transition: 0.4s ease;
+    background-color: #7F000B;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+h4{
+    color: #7F000B;
+    text-decoration: underline;
+}
+
+h1{
+    color: #7F000B;
+    font-weight: 900;
+}
+@media screen and (max-width: 880px){
+    .titleSection{
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+    }
+    .mainSection{
+        height: auto;
+    }
+    .contentSection{
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .food-div{
+        width: 100%;
+    }
+
+    #button-food{
+        width: 100%;
+    }
+}

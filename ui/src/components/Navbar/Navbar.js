@@ -38,8 +38,8 @@ class Navbar extends PureComponent {
 					}
 				>
 					{MenuItems.map((item, index) => (
-						<Link to={item.url} style={{ textDecoration: "none" }}>
-							<li key={index}>
+						<Link to={item.url} style={{ textDecoration: "none" }} key={index}>
+							<li >
 								<span className={item.cName}>{item.title}</span>
 							</li>
 						</Link>
