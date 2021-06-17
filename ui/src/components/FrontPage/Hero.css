@@ -54,3 +54,42 @@
 	outline: none;
 	transition: all 0.3s ease;
 }
+
+
+@media screen and (max-width: 880px){
+	.mainSection{
+		display: flex;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.contentContainer{
+		width: 100%;
+	}
+
+	.contentParagraph{
+		width: 100%;
+		padding: 20px;
+	}
+
+	#inputButton{
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		border: none;
+	}
+
+	#searchInput{
+		width: 100%;
+		border: 2px solid rgba(29, 29, 29, 0.897);
+	}
+
+	#searchButton{
+		width: 100%;
+	}
+
+	#searchButton:hover{
+		background-color: rgba(29, 29, 29);
+	}
+
+}	

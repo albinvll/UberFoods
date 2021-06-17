@@ -89,3 +89,32 @@
     transition: all 0.3s ease;
     color: #fff;
 }
+
+@media screen and (max-width: 880px) {
+    .SubMainSection{
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .SubContentContainer{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #leftSide{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .SubInputButton{
+        width: 100%;
+    }
+
+    #SubEmail, #SubButton{
+        width: 100%;
+    }
+}
