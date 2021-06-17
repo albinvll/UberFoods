@@ -19,40 +19,31 @@ class Navbar extends PureComponent {
 
 	render() {
 		return (
-			<nav className="NavbarItems">
-				<h1 className="navbar-logo">
-					<Link to="/">
-						<span>Uberfoods</span>
-					</Link>
-				</h1>
-				<div className="menu-icon" onClick={this.handleClick}>
-					<i
-						className={
-							this.state.clicked ? "fas fa-times" : "fas fa-bars"
-						}
-					></i>
-				</div>
-				<ul
-					className={
-						this.state.clicked ? "nav-menu active" : "nav-menu"
-					}
-				>
-					{MenuItems.map((item, index) => (
-						<Link to={item.url} style={{ textDecoration: "none" }} key={index}>
-							<li >
-								<span className={item.cName}>{item.title}</span>
-							</li>
-						</Link>
-					))}
-				</ul>
-				<button
-					onClick={this.onSignInButtonClick}
-					className={`btn btn--primary btn--medium`}
-				>
-					Sign in
-				</button>
-			</nav>
-		);
+      <nav className="NavbarItems">
+        <h1 className="navbar-logo">
+          <Link to="/">
+            <span>Uberfoods</span>
+          </Link>
+        </h1>
+        <div className="menu-icon" onClick={this.handleClick}>
+          <i
+            className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}
+          ></i>
+        </div>
+        <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
+          {MenuItems.map((item, index) => (
+            <Link to={item.url} style={{ textDecoration: "none" }} key={index} id="navbar-link">
+              <li>
+                <span className={item.cName}>{item.title}</span>
+              </li>
+            </Link>
+          ))}
+        </ul>
+        <button onClick={this.onSignInButtonClick} className="btn order-btn">
+          Sign in
+        </button>
+      </nav>
+    );
 	}
 }
 

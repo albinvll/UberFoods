@@ -64,9 +64,9 @@
 
 .btn {
 	padding: 8px 20px;
-	color: #fff;
+	color: #fff !important;
 	border-radius: 4px;
-	background: #8c000a;
+	background: #8c000a !important;
 	border: 1px solid #8c000a;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -74,7 +74,6 @@
 
 .btn:hover {
 	background: none;
-	padding: 8px 20px;
 	transition: all 0.3s ease-out;
 	border: 1px solid #8c000a;
 	color: #8c000a;
@@ -158,7 +157,7 @@
 		background-color: #8c000a;
 		text-decoration: none;
 	}
-	.btn {
-		display: none;
+	.order-btn {
+		display: none !important;
 	}
 }

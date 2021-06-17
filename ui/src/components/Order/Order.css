@@ -4,7 +4,7 @@
 }
 
 .order-Main-Section{
-    background-image: linear-gradient(rgba(255, 255, 255, 0.864), rgba(255, 255, 255, 0.864)), url("../../assets/orderbackground.jpg");
+    background-image: linear-gradient(rgba(255, 255, 255, 0.864), rgba(255, 255, 255, 0.864));
     background-size: cover;
     background-repeat: no-repeat;
     height: 700px;
@@ -92,4 +92,22 @@
 
 .order-total{
     
+}
+
+@media screen and (max-width: 880px){
+
+    .order-Main-Section{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .order-left-side{
+        width: 100%;
+    }
+
+    .order-right-side{
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
 }

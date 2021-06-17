@@ -68,6 +68,7 @@ h2{
     transition: 0.4s ease;
     background-color: #7F000B;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 2px solid rgba(29, 29, 29, 0.671);
 }
 
 @media screen and (max-width: 880px){
