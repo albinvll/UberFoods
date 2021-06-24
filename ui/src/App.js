@@ -13,6 +13,7 @@ import Register from './components/Auth/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddRestaurant from './components/Dashboard/Pages/AddRestaurant';
 import Foods from './components/Foods/Foods';
+import Cart from './components/Cart/Cart';
 
 export default class App extends Component {
   static displayName = App.name;
@@ -27,6 +28,7 @@ export default class App extends Component {
         <Route exact path='/add/restaurant' component={AddRestaurant} />
         <Route exact path='/' component={FrontPage} />
         <Route exact path='/foods' component={Foods} />
+        <Route exact path='/cart' component={Cart} />
       {/* .
         <Route exact path='/home' component={FrontPage} />
         <Route exact path='/sign-in' component={SignIn} />

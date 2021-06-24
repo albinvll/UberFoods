@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import './FrontFood.css';
-import Burger from '../../../src/assets/burder.jpg'
+import React, { useState } from "react";
+import "./FrontFood.css";
+import Burger from "../../../src/assets/burder.jpg";
+import { connect } from "react-redux";
+import { addToCart } from "../../redux/food-order/actions";
 
-import { connect }  from 'react-redux'
-import {addToCart} from '../../redux/food-order/actions'
+import { Link } from "react-router-dom";
 
-const FrontFood = ({addToCart}) => {
 
-  const [foods, setFood] = useState([
+
+const FrontFood = ({ addToCart }) => {
+
+  const [foods, setFoods] = useState([
     {
       id: 1,
       title: "Hamberger Aba",
@@ -45,19 +48,29 @@ const FrontFood = ({addToCart}) => {
             <div className="food-desc">
               <h2>{item.title}</h2>
               <h4>${item.price}</h4>
-              <button id="button-food" onClick={()=>addToCart(item.id)}>Add to cart</button>
+              <button
+                id="button-food"
+                onClick={() => {
+                  addToCart(item.id);
+                }}
+              >
+                Add to cart
+              </button>
             </div>
           </div>
         ))}
       </div>
+      <Link to="/cart">
+        <button>Cart</button>
+      </Link>
     </div>
   );
 };
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-      addToCart: (id) => dispatch(addToCart(id)),
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToCart: (id) => dispatch(addToCart(id)),
+  };
+};
 
 export default connect(null, mapDispatchToProps)(FrontFood);
