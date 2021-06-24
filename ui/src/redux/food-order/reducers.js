@@ -1,14 +1,31 @@
 import * as actionTypes from './types';
 
-const INITIAL_STATE={
-    products:[{
-        id: 1,
-        title: 'Hamburger',
-        price: '1.50..'
-    }],
-    cart: [],
-    currentItem: null
-}
+const INITIAL_STATE = {
+  products: [
+    {
+      id: 1,
+      title: "Hamburger",
+      price: "1.50",
+    },
+    {
+      id: 2,
+      title: "Hamberger Aba",
+      price: "1.00",
+    },
+    {
+      id: 3,
+      title: "Hamberger Shtepie",
+      price: "2.00",
+    },
+    {
+      id: 4,
+      title: "Hamburger Pule",
+      price: "2.50",
+    },
+  ],
+  cart: [],
+  currentItem: null,
+};
 
 
 const foodReducer = (state = INITIAL_STATE,action)=>{
