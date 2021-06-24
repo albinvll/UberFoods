@@ -4,11 +4,7 @@ import client from "../../axios";
 import { Dropdown } from "react-bootstrap";
 
 export default class Order extends PureComponent {
-	componentDidMount() {
-		client.get("Restaurant/getRestaurant").then((response) => {
-			this.setState({ selectedLocation: response.data });
-		});
-	}
+	
 
 	state = {
 		selectedLocation: [],
@@ -31,6 +27,13 @@ export default class Order extends PureComponent {
 		cardCVV: "",
 		selectedRestaurant: "",
 	};
+
+	componentDidMount() {
+		/*client.get("Restaurant/getRestaurant").then((response) => {
+			this.setState({ selectedLocation: response.data });
+		});*/
+	}
+
 	onCityChangeText = (event) => {
 		this.setState({ city: event.target.value });
 	};
@@ -117,7 +120,7 @@ export default class Order extends PureComponent {
 								value={this.state.city}
 								onChange={this.onCityChangeText}
 							/>
-							Restaurant
+							Restaurants
 							<div>
 								<Dropdown>
 									<Dropdown.Toggle>
