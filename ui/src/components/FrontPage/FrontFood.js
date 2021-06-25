@@ -3,6 +3,9 @@ import "./FrontFood.css";
 import Burger from "../../../src/assets/burder.jpg";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/food-order/actions";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import { Link } from "react-router-dom";
 
@@ -28,6 +31,8 @@ const FrontFood = ({ addToCart }) => {
     },
   ]);
 
+  const notify = () => toast.success("Added to cart");
+
   return (
     <div className="mainSection">
       <div className="titleSection">
@@ -52,6 +57,7 @@ const FrontFood = ({ addToCart }) => {
                 id="button-food"
                 onClick={() => {
                   addToCart(item.id);
+                  notify();
                 }}
               >
                 Add to cart
