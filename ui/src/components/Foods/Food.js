@@ -2,17 +2,54 @@ import React from 'react'
 
 import { connect }  from 'react-redux'
 import {addToCart} from '../../redux/food-order/actions'
+import './Foods.css'
+import Burger from '../../../src/assets/burder.jpg'
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Food = ({foodData, addToCart}) => {
-    return(
-        <div>
-            <h1>{foodData.id}</h1>
-            <h1>{foodData.title}</h1>
-            <h1>{foodData.price}</h1>
+    const [value, setValue] = React.useState(5);
 
-            <button onClick={()=>addToCart(foodData.id)}>Add to cart</button>
+    const notify = () => toast.success("Added to cart");
+
+    return (
+      <div className="food-container">
+        <div className="food-image">
+          <img src={Burger} alt="" />
         </div>
-    )
+        <div className="food-desc">
+          <div className="food-desc-title">
+            <h5>{foodData.title}</h5>
+          </div>
+          <div className="food-desc-price">
+            <p>${foodData.price}</p>
+          </div>
+          <div className="food-desc-rating">
+            <Box component="fieldset" mb={3} borderColor="transparent">
+              <Rating
+                name="simple-controlled"
+                value={value}
+                readOnly
+              />
+            </Box>
+          </div>
+        </div>
+        <div className="food-action">
+          <button 
+            id="foodpage-action" 
+            onClick={() =>{
+                addToCart(foodData.id); 
+                notify();
+            } }>
+            Add to cart
+          </button>
+          <ToastContainer/>
+        </div>
+      </div>
+    );
 }
 
 const mapDispatchToProps = (dispatch) =>{
@@ -20,5 +57,6 @@ const mapDispatchToProps = (dispatch) =>{
         addToCart: (id) => dispatch(addToCart(id)),
     }
 }
+
 
 export default connect(null, mapDispatchToProps)(Food);
