@@ -66,9 +66,6 @@ const FrontFood = ({ addToCart }) => {
           </div>
         ))}
       </div>
-      <Link to="/cart">
-        <button>Cart</button>
-      </Link>
     </div>
   );
 };
