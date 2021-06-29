@@ -29,12 +29,12 @@ namespace OrderService.Controllers
         }
 
         [HttpPost("login")]
-        public LoginResponse Login([FromBody]LoginRequest loginRequest)
+        public IActionResult Login([FromBody]LoginRequest loginRequest)
         {
             DataTable table = AccountData.Login(loginRequest.email, loginRequest.password, loginRequest.accountType);
             if (table.Rows.Count <= 0)
             {
-                return null;
+                return NotFound("Perdoruesi nuk u gjet");
             }
             LoginResponse loginResponse = new LoginResponse();
             if (loginRequest.accountType == 3)
@@ -48,7 +48,7 @@ namespace OrderService.Controllers
                 loginResponse.Id = Convert.ToInt32(table.Rows[0]["Id"].ToString());
                 loginResponse.AccountType = loginRequest.accountType;
             }
-            return loginResponse;
+            return Ok(loginResponse);
         }
 
         public class LoginRequest
