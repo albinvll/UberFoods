@@ -12,10 +12,6 @@ class Navbar extends PureComponent {
 		this.setState({ clicked: !this.state.clicked });
 	};
 
-	onSignInButtonClick = (event) => {
-		event.preventDefault();
-		console.log(this.props.history);
-	};
 
 	render() {
 		return (
@@ -39,9 +35,11 @@ class Navbar extends PureComponent {
             </Link>
           ))}
         </ul>
-        <button onClick={this.onSignInButtonClick} className="btn order-btn">
-          Sign in
-        </button>
+        <Link to="/login">
+          <button className="btn order-btn">
+            Sign in
+          </button>
+        </Link>
       </nav>
     );
 	}
