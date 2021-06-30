@@ -31,7 +31,7 @@ namespace UberFoodsAPI.Controllers
         public List<Article> GettAllArticles()
         {
             DataTable articlesTable = ArticlesData.GetAllArticles();
-            List<Article> articleList = new List<Article>(articles.Rows.Count);
+            List<Article> articleList = new List<Article>(articlesTable.Rows.Count);
 
             foreach(DataRow dr in articlesTable.Rows)
             {

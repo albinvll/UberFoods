@@ -1,36 +1,25 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Food from './Food';
 import './Foods.css'
 import Navbar from '../Navbar/Navbar';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import client from '../../axios';
 
 import { connect } from 'react-redux'
 
 const Foods = () =>{
 
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      description: "Hamburger",
-      price: "1.50",
-    },
-    {
-      id: 2,
-      description: "Hamberger Aba",
-      price: "1.00",
-    },
-    {
-      id: 3,
-      description: "Hamberger Shtepie",
-      price: "2.00",
-    },
-    {
-      id: 4,
-      description: "Hamburger Pule",
-      price: "2.50",
-    },
-  ]);
+  const [products, setProducts] = useState([]);
 
+  const fetchData = async () =>{
+    await client.get("Articles/getAllArticles").then((res)=>{
+      setProducts(res.data);
+    })
+  }
+
+  useEffect(()=>{
+    fetchData();
+  },[products])
     return (
       <div>
         <Navbar />

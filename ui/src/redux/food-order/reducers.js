@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 const foodReducer = (state = INITIAL_STATE,action)=>{
     switch(action.type){
         case actionTypes.ADD_TO_CART:
-            //e mer item
             const item = {
               id: action.payload.id,
               description: action.payload.description,
