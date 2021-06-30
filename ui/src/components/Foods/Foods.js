@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Food from './Food';
 import './Foods.css'
 import Navbar from '../Navbar/Navbar';
@@ -6,7 +6,31 @@ import {Link} from 'react-router-dom'
 
 import { connect } from 'react-redux'
 
-const Foods = ( {products} ) =>{
+const Foods = () =>{
+
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      description: "Hamburger",
+      price: "1.50",
+    },
+    {
+      id: 2,
+      description: "Hamberger Aba",
+      price: "1.00",
+    },
+    {
+      id: 3,
+      description: "Hamberger Shtepie",
+      price: "2.00",
+    },
+    {
+      id: 4,
+      description: "Hamburger Pule",
+      price: "2.50",
+    },
+  ]);
+
     return (
       <div>
         <Navbar />
@@ -34,10 +58,5 @@ const Foods = ( {products} ) =>{
     );
 }
 
-const mapStateToProps = (state) => {
-    return{
-        products: state.food.products,
-    };
-};
 
-export default connect(mapStateToProps)(Foods);
+export default Foods;

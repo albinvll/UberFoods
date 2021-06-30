@@ -17,6 +17,7 @@ import {
   Select,
 } from "@material-ui/core/";
 import client from "../../axios";
+import { Redirect } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -233,13 +234,13 @@ export default function Register() {
             createOrderer();
           }
         } else if (accountType === 2) {
-			if(validateDelivery()){
-				createDeliveryAccount();
-			}
+          if (validateDelivery()) {
+            createDeliveryAccount();
+          }
         } else {
-			if(validateCoEmail&&validateCoDesc&&validateCoCity){
-				createCorporateAccount();
-			}
+          if (validateCoEmail && validateCoDesc && validateCoCity) {
+            createCorporateAccount();
+          }
         }
       }
     } catch (error) {

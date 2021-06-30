@@ -22,7 +22,7 @@ const Food = ({foodData, addToCart}) => {
         </div>
         <div className="food-desc">
           <div className="food-desc-title">
-            <h5>{foodData.title}</h5>
+            <h5>{foodData.description}</h5>
           </div>
           <div className="food-desc-price">
             <p>${foodData.price}</p>
@@ -41,7 +41,7 @@ const Food = ({foodData, addToCart}) => {
           <button 
             id="foodpage-action" 
             onClick={() =>{
-                addToCart(foodData.id); 
+                addToCart(foodData); 
                 notify();
             } }>
             Add to cart
@@ -54,7 +54,7 @@ const Food = ({foodData, addToCart}) => {
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        addToCart: (id) => dispatch(addToCart(id)),
+        addToCart: (item) => dispatch(addToCart(item)),
     }
 }
 

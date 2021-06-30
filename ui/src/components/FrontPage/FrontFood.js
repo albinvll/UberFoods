@@ -16,17 +16,22 @@ const FrontFood = ({ addToCart }) => {
   const [foods, setFoods] = useState([
     {
       id: 1,
-      title: "Hamberger Aba",
+      description: "Hamburger",
+      price: "1.50",
+    },
+    {
+      id: 2,
+      description: "Hamberger Aba",
       price: "1.00",
     },
     {
       id: 3,
-      title: "Hamberger Shtepie",
+      description: "Hamberger Shtepie",
       price: "2.00",
     },
     {
       id: 4,
-      title: "Hamburger Pule",
+      description: "Hamburger Pule",
       price: "2.50",
     },
   ]);
@@ -51,12 +56,12 @@ const FrontFood = ({ addToCart }) => {
               <img src={Burger} />
             </div>
             <div className="food-desc">
-              <h2>{item.title}</h2>
+              <h2>{item.description}</h2>
               <h4>${item.price}</h4>
               <button
                 id="button-food"
                 onClick={() => {
-                  addToCart(item.id);
+                  addToCart(item);
                   notify();
                 }}
               >
@@ -72,7 +77,7 @@ const FrontFood = ({ addToCart }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addToCart: (id) => dispatch(addToCart(id)),
+    addToCart: (item) => dispatch(addToCart(item)),
   };
 };
 

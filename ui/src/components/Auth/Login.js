@@ -18,6 +18,8 @@ import {
 	InputLabel,
 } from "@material-ui/core/";
 import client from "../../axios";
+
+
 const useStyles = makeStyles((theme) => ({
 	paper: {
 		marginTop: theme.spacing(8),
@@ -73,7 +75,13 @@ export default function Login() {
 
 	const onLoginButtonClick = (event) => {
 		event.preventDefault();
-		if (validateEmail && validatePassword) {
+		/*if (validateEmail && validatePassword) {
+			submitLogin();
+		}*/
+
+		if(email === "" || password === ""){
+			alert("Some of your informations are empty");
+		}else{
 			submitLogin();
 		}
 	};
@@ -95,6 +103,7 @@ export default function Login() {
 
 	return (
 		<Container component="main" maxWidth="xs">
+			 
 			<CssBaseline />
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}></Avatar>

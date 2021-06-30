@@ -1,28 +1,6 @@
 import * as actionTypes from './types';
 
 const INITIAL_STATE = {
-  products: [
-    {
-      id: 1,
-      title: "Hamburger",
-      price: "1.50",
-    },
-    {
-      id: 2,
-      title: "Hamberger Aba",
-      price: "1.00",
-    },
-    {
-      id: 3,
-      title: "Hamberger Shtepie",
-      price: "2.00",
-    },
-    {
-      id: 4,
-      title: "Hamburger Pule",
-      price: "2.50",
-    },
-  ],
   cart: [],
   currentItem: null,
 };
@@ -32,7 +10,11 @@ const foodReducer = (state = INITIAL_STATE,action)=>{
     switch(action.type){
         case actionTypes.ADD_TO_CART:
             //e mer item
-            const item = state.products.find(prod=>prod.id === action.payload.id);
+            const item = {
+              id: action.payload.id,
+              description: action.payload.description,
+              price: action.payload.price
+            };
             //check nese qeky item ekziston ne cart
             const inCart = state.cart.find(item=>item.id === action.payload.id ? true : false);
             return{

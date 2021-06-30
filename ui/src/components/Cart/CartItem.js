@@ -58,7 +58,7 @@ const CartItem = ({ cartItemData, removeFromCart, adjustQty }) => {
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography component="h5" variant="h5">
-              {cartItemData.title}
+              {cartItemData.description}
             </Typography>
             <Typography variant="subtitle1" color="textSecondary">
               ${cartItemData.price}

@@ -15,5 +15,15 @@ namespace UberFoodsAPI.Data
             da.Fill(table);
             return table;
         }
+
+        public static DataTable GetAllArticles()
+        {
+            DataTable table = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("AllArticles_sp", PublicClass.ConnectionString);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.Fill(table);
+            return table;
+
+        }
     }
 }

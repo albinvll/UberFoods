@@ -9,6 +9,15 @@ BEGIN
 	WHERE AM.MenuId = @MenuId
 END
 
+
+CREATE PROCEDURE AllArticles_sp
+AS
+BEGIN
+	SELECT * 
+	FROM Artikulli
+END
+
+
 CREATE PROCEDURE PikaSelect_sp (@PikaId INT = NULL)
 AS
 BEGIN
