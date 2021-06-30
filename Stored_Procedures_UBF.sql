@@ -9,14 +9,14 @@ BEGIN
 	WHERE AM.MenuId = @MenuId
 END
 
-
-CREATE PROCEDURE AllArticles_sp
+CREATE PROCEDURE AllArticlesSelect_sp
 AS
 BEGIN
-	SELECT * 
+	SELECT Id
+		,Pershkrimi
+		,Cmimi
 	FROM Artikulli
 END
-
 
 CREATE PROCEDURE PikaSelect_sp (@PikaId INT = NULL)
 AS

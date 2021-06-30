@@ -2,11 +2,9 @@ import React, { PureComponent } from "react";
 import "./Order.css";
 import client from "../../axios";
 import { Dropdown } from "react-bootstrap";
-
-export default class Order extends PureComponent {
-
-	
-
+import { connect } from "react-redux";
+import { mapFoodOrderStateToProps } from "../../redux/connect/foodOrderConnect";
+class Order extends PureComponent {
 	state = {
 		selectedLocation: [],
 
@@ -33,6 +31,14 @@ export default class Order extends PureComponent {
 		/*client.get("Restaurant/getRestaurant").then((response) => {
 			this.setState({ selectedLocation: response.data });
 		});*/
+		let sum;
+		for (let i = 0; i < this.props.cart.length; i++) {
+			sum +=
+				parseFloat(this.props.cart[i].price) *
+				parseFloat(this.props.cart[i].qty);
+		}
+		console.log(sum);
+		this.setState({ selectedSum: sum });
 	}
 
 	onCityChangeText = (event) => {
@@ -71,28 +77,16 @@ export default class Order extends PureComponent {
 	};
 
 	handleChangeRestaurant = async (event, location) => {
-		console.log("test")
+		console.log("test");
 		await this.setState({ selectedRestaurant: location });
 		client
 			.get("Articles/getArticlesFromRestaurantId", {
 				params: { menuId: location.menuId },
 			})
 			.then((response) => {
-				console.log(response.data)
+				console.log(response.data);
 				this.setState({ availableArticles: response.data });
 			});
-	};
-
-	calculateSum = async () => {
-		if (!(this.state.selectedArticles.length > 0)) {
-			await this.setState({ selectedSum: 0 });
-			return;
-		}
-		let sum = 0;
-		for (let i = 0; i < this.state.selectedArticles.length; ++i) {
-			sum += this.state.selectedArticles[i].price;
-		}
-		await this.setState({ selectedSum: sum });
 	};
 
 	render() {
@@ -239,3 +233,4 @@ export default class Order extends PureComponent {
 		);
 	}
 }
+export default connect(mapFoodOrderStateToProps)(Order);
