@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Food from './Food';
 import './Foods.css'
 import Navbar from '../Navbar/Navbar';
@@ -7,18 +7,26 @@ import client from '../../axios';
 
 import { connect } from 'react-redux'
 
-const Foods = () =>{
+const Foods = (props) =>{
 
   const [products, setProducts] = useState([]);
 
+  const currentFoodId = props.match.params.id;
+
   const fetchData = async () =>{
-    await client.get("Articles/getAllArticles").then((res)=>{
+    await client.get("Articles/getArticlesFromRestaurantId",{
+      params: {
+        currentFoodId
+      }
+    }).then((res)=>{
       setProducts(res.data);
     })
   }
 
   useEffect(()=>{
+    console.log(currentFoodId);
     fetchData();
+
   },[products])
     return (
       <div>
