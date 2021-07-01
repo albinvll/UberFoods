@@ -11,12 +11,12 @@ const Foods = (props) =>{
 
   const [products, setProducts] = useState([]);
 
-  const currentFoodId = props.match.params.id;
+  const currentRestaurantID = props.match.params.id;
 
   const fetchData = async () =>{
     await client.get("Articles/getArticlesFromRestaurantId",{
       params: {
-        currentFoodId
+        currentRestaurantID
       }
     }).then((res)=>{
       setProducts(res.data);
@@ -24,7 +24,7 @@ const Foods = (props) =>{
   }
 
   useEffect(()=>{
-    console.log(currentFoodId);
+    console.log(currentRestaurantID);
     fetchData();
 
   },[products])
