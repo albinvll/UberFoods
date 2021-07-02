@@ -25,5 +25,6 @@ namespace UberFoodsAPI.Data
             return table;
 
         }
+
     }
 }

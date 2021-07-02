@@ -237,3 +237,45 @@ BEGIN
 	WHERE @Email = P.Email
 		AND @Password = P.Password
 END
+
+
+CREATE PROCEDURE PikaInsert_sp(
+	@KorporataId bigint,
+	@PikaPershkrimi varchar(255),
+	@AdresaPershkrimi VARCHAR(255),
+	@AdresaX DECIMAL(18, 12),
+	@AdresaY DECIMAL(18, 12),
+	@AdresaZ DECIMAL(18, 12),
+	@NrTelefonit varchar(255)
+	)
+AS
+BEGIN
+	DECLARE @AdresaEReID BIGINT
+
+	INSERT INTO Adresa
+	VALUES (
+		@AdresaX,
+		@AdresaY,
+		@AdresaZ,
+		@AdresaPershkrimi
+		)
+
+	SELECT @AdresaEReID = MAX(Id)
+	FROM Adresa
+
+	DECLARE @MenuEReID BIGINT
+	
+	INSERT INTO Menu values(@PikaPershkrimi)
+
+	SELECT @MenuEReID = MAX(Id)
+	FROM Menu
+
+	INSERT INTO Pika 
+	VALUES(
+		@KorporataId,
+		@PikaPershkrimi,
+		@AdresaEReID,
+		@NrTelefonit,
+		@MenuEReID
+	)
+END

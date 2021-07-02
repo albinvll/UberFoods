@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using UberFoodsAPI.Models;
 
 namespace UberFoodsAPI.Data
 {
@@ -18,6 +19,18 @@ namespace UberFoodsAPI.Data
             da.SelectCommand.Parameters.AddWithValue("@PikaId", null);
             da.Fill(table);
             return table;
+        }
+
+        public static void InsertRestaurantCommand(Restaurant restaurant, Menu menu,int korportataId, SqlConnection cnn, SqlTransaction tran)
+        {
+            SqlCommand insert = new SqlCommand("PikaInsert_sp", cnn, tran)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            insert.Parameters.AddWithValue("@KorporataId", korportataId);
+            insert.Parameters.AddWithValue("@PikaPershkrimi",restaurant.Description);
+            
         }
     }
 }
