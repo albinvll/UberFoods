@@ -30,7 +30,7 @@ const RestaurantList = () =>{
             <p>Check out the restaurants menus</p>
 
             {restaurants.map((restaurant) => (
-              <Restaurant key={restaurant.id} foodData={restaurant} />
+              <Restaurant key={restaurant.id} restaurantData={restaurant} />
             ))}
           </div>
         </div>

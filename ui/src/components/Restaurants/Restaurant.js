@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
-const Restaurant = ({ foodData, addToCart }) => {
+const Restaurant = ({ restaurantData, addToCart }) => {
   const [value, setValue] = React.useState(5);
 
   const notify = () => toast.success("Added to cart");
@@ -23,8 +23,8 @@ const Restaurant = ({ foodData, addToCart }) => {
       </div>
       <div className="food-desc">
         <div className="food-desc-title">
-          <Link to={`/foods/${foodData.id}`}>
-            <h5>{foodData.description}</h5>
+          <Link to={`/foods/${restaurantData.id}`}>
+            <h5>{restaurantData.description}</h5>
           </Link>
         </div>
 
@@ -35,7 +35,7 @@ const Restaurant = ({ foodData, addToCart }) => {
         </div>
       </div>
       <div className="food-action">
-        <Link to={`/foods/${foodData.id}`} style={{textDecoration:'none'}}>
+        <Link to={`/foods/${restaurantData.MenuId}`} style={{textDecoration:'none'}}>
           <button id="foodpage-action"> Check menu</button>
         </Link>
         <ToastContainer />

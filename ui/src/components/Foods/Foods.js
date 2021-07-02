@@ -1,33 +1,28 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import Food from './Food';
 import './Foods.css'
 import Navbar from '../Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import client from '../../axios';
 
-import { connect } from 'react-redux'
-
 const Foods = (props) =>{
 
   const [products, setProducts] = useState([]);
 
-  const currentRestaurantID = props.match.params.id;
+  const currentMenuID = props.match.params.id;
 
   const fetchData = async () =>{
-    await client.get("Articles/getArticlesFromRestaurantId",{
-      params: {
-        currentRestaurantID
-      }
-    }).then((res)=>{
-      setProducts(res.data);
+    await client.get("Articles/getArticlesFromRestaurantId"+"/"+currentMenuID).then((res)=>{
+      console.log(res.data);
+      setProducts(res.data)
     })
   }
 
   useEffect(()=>{
-    console.log(currentRestaurantID);
     fetchData();
+  },[products,setProducts])
 
-  },[products])
+
     return (
       <div>
         <Navbar />
