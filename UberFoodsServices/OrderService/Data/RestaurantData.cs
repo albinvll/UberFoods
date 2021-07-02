@@ -21,16 +21,44 @@ namespace UberFoodsAPI.Data
             return table;
         }
 
-        public static void InsertRestaurantCommand(Restaurant restaurant, Menu menu,int korportataId, SqlConnection cnn, SqlTransaction tran)
+        public static void InsertRestaurant(Restaurant restaurant, Adresa adresa)
+        {
+            SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);
+            SqlTransaction tran = default;
+
+            try
+            {
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                InsertRestaurantCommand(restaurant, adresa,cnn,tran);
+                tran.Commit();
+            }catch(Exception e)
+            {
+                Console.Error.WriteLine(e.StackTrace);
+                tran.Rollback();
+                throw;
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+        public static void InsertRestaurantCommand(Restaurant restaurant,Adresa adresa, SqlConnection cnn, SqlTransaction tran)
         {
             SqlCommand insert = new SqlCommand("PikaInsert_sp", cnn, tran)
             {
                 CommandType = CommandType.StoredProcedure
             };
 
-            insert.Parameters.AddWithValue("@KorporataId", korportataId);
+            insert.Parameters.AddWithValue("@KorporataId", restaurant.AddressId);
             insert.Parameters.AddWithValue("@PikaPershkrimi",restaurant.Description);
-            
+            insert.Parameters.AddWithValue("@AdresaPershkrimi", adresa.Description);
+            insert.Parameters.AddWithValue("@AdresaX", 1.1);
+            insert.Parameters.AddWithValue("@AdresaY", 1.1);
+            insert.Parameters.AddWithValue("@AdresaZ", 1.1);
+            insert.Parameters.AddWithValue("@NrTelefonit", restaurant.TelephoneNr);
+            insert.ExecuteNonQuery();
         }
     }
 }

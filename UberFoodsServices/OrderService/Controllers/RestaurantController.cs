@@ -29,5 +29,11 @@ namespace UberFoodsAPI.Controllers
             }
             return restaurantsList;
         }
+
+        [HttpPost("createRestaurant")]
+        public void CreateRestaurant([FromQuery] Restaurant restaurant, Adresa adresa)
+        {
+            RestaurantData.InsertRestaurant(restaurant, adresa);
+        }
     }
 }
