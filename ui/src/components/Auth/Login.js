@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
 	Container,
 	Avatar,
@@ -16,7 +16,7 @@ import {
 	InputLabel,
 } from "@material-ui/core/";
 import client from "../../axios";
-
+import * as auth from "../../Auth";
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -38,11 +38,18 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Login() {
+export default function Login(props) {
 	const classes = useStyles();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [accountType, setAccountType] = useState(1);
+
+	useEffect(() => {
+		console.log(auth.isLoggedIn())
+		if (auth.isLoggedIn()) {
+			props.history.push("/");
+		}
+	}, []);
 
 	const onTypeText = (event) => {
 		setAccountType(event.target.value);
@@ -73,13 +80,10 @@ export default function Login() {
 
 	const onLoginButtonClick = (event) => {
 		event.preventDefault();
-		/*if (validateEmail && validatePassword) {
-			submitLogin();
-		}*/
 
-		if(email === "" || password === ""){
+		if (email === "" || password === "") {
 			alert("Some of your informations are empty");
-		}else{
+		} else {
 			submitLogin();
 		}
 	};
@@ -92,7 +96,13 @@ export default function Login() {
 				accountType,
 			});
 			if (response && response.data) {
-				console.log(response.data);
+				const userData = response.data;
+				auth.saveUser(
+					userData.id,
+					userData.accountType,
+					userData.corporateId
+				);
+				props.history.push("/");
 			}
 		} catch (error) {
 			console.error(error.response.data);
@@ -101,7 +111,6 @@ export default function Login() {
 
 	return (
 		<Container component="main" maxWidth="xs">
-			 
 			<CssBaseline />
 			<div className={classes.paper}>
 				<Avatar className={classes.avatar}></Avatar>
