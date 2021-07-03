@@ -31,13 +31,10 @@ class Order extends PureComponent {
 		/*client.get("Restaurant/getRestaurant").then((response) => {
 			this.setState({ selectedLocation: response.data });
 		});*/
-		let sum;
-		for (let i = 0; i < this.props.cart.length; i++) {
-			sum +=
-				parseFloat(this.props.cart[i].price) *
-				parseFloat(this.props.cart[i].qty);
+		let sum = 0;
+		for (let i = 0; i < this.props.cart.length; ++i) {
+			sum += this.props.cart[i].price * this.props.cart[i].qty;
 		}
-		console.log(sum);
 		this.setState({ selectedSum: sum });
 	}
 
@@ -224,7 +221,7 @@ class Order extends PureComponent {
 								{this.state.selectedSum &&
 								this.state.selectedSum > 0
 									? this.state.selectedSum
-									: ""}
+									: ""} &euro;
 							</div>
 						</div>
 					</div>
