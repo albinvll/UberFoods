@@ -16,6 +16,7 @@ const Foods = (props) => {
 			},
 		});
 		if(response && response.data){
+      setProducts(response.data);
 			console.log(response.data)
 		}
 	};
@@ -26,7 +27,7 @@ const Foods = (props) => {
 		} else {
 			props.history.push("/");
 		}
-	}, [products, setProducts]);
+	}, []);
 
 	return (
 		<div>
@@ -37,9 +38,9 @@ const Foods = (props) => {
 					<h3>Foods</h3>
 					<p>Choose the food you love the most!</p>
 
-					{products.map((food) => (
+					{products.length>0 ? products.map((food) => (
 						<Food key={food.id} foodData={food} />
-					))}
+					)):<></>}
 				</div>
 				<div className="foods-right-container">
 					<div className="food-right-title">

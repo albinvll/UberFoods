@@ -33,7 +33,7 @@ const Restaurant = ({ restaurantData, addToCart, props }) => {
 			<div className="food-desc">
 				<div className="food-desc-title">
 					<p>
-						<h5>{restaurantData.description}</h5>
+						{restaurantData.description}
 					</p>
 				</div>
 
