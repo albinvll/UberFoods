@@ -1,4 +1,4 @@
-.mainSection{
+.dashboard-mainSection{
     display: flex;
     flex-direction: row;
     width:auto;
@@ -8,6 +8,6 @@
     width: 14%;
 }
 
-.left-content-container{
+.dashboard-left-content-container{
     width: 86%;
 }

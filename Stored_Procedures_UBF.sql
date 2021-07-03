@@ -279,3 +279,21 @@ BEGIN
 		@MenuEReID
 	)
 END
+
+
+
+CREATE PROCEDURE Top3Articles_sp
+AS
+BEGIN
+	SELECT TOP 3 Id, Pershkrimi, Cmimi from Artikulli
+END
+
+
+CREATE PROCEDURE RestaurantsFromCorpId_sp (
+	@CorpId bigint
+)
+AS
+BEGIN
+	SELECT Id, KorporataId, Pershkrimi, AdresaId, NrTelefonit, MenuId FROM PIKA
+	WHERE KorporataId = @CorpId
+END

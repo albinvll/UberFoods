@@ -13,12 +13,13 @@ const RestaurantList = (props) => {
 	const fetchData = async () => {
 		await client.get("Restaurant/getRestaurant").then((res) => {
 			setRestaurants(res.data);
+			console.log(res.data);
 		});
 	};
 
 	useEffect(() => {
 		fetchData();
-	}, [restaurants]);
+	}, []);
 	return (
 		<div>
 			<Navbar />

@@ -9,44 +9,19 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import './Restaurants.css';
 import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import {Link} from '@material-ui/core';
-
-
+import client from '../../../axios'
 
 
 
 export class Restaurants extends Component {
 
     state = {
-        restaurants: [
-            {
-                restaurantID: 1,
-                restaurantName: 'Restaurant Test1',
-                dateCreated: '10/10/2011',
-                location: 'Ulpjane',
-            },
-            {
-                restaurantID: 2,
-                restaurantName: 'Restaurant Test2',
-                dateCreated: '10/10/2012',
-                location: 'Dardani'
-            },
-            {
-                restaurantID: 3,
-                restaurantName: 'Restaurant Test3',
-                dateCreated: '10/10/2013',
-                location: 'Bregu Diellit'
-            }
-        ],
-        
-        setOpen: false
+        restaurants: [],
     }
 
     handleOpen = () => {
@@ -56,6 +31,19 @@ export class Restaurants extends Component {
     handleClose = () => {
         this.setState({setOpen: false});
     };
+
+    fetchRestaurantsBasedOnCorpId = async ()=>{
+      const currentCorpId = parseInt(localStorage.getItem("corporateId"));
+      const response = await client.get("Restaurant/getRestaurantFromCorpId",{
+        params: {
+          CorpId: currentCorpId
+        }
+      });
+      this.setState({restaurants: response.data})
+    }
+    componentDidMount=()=>{
+      this.fetchRestaurantsBasedOnCorpId();
+    }
 
     render() {
         return (
@@ -83,18 +71,18 @@ export class Restaurants extends Component {
                 </TableHead>
                 <TableBody>
                   {this.state.restaurants.map((res) => (
-                    <TableRow>
+                    <TableRow key={res.id}>
                       <TableCell>
                         <Avatar alt="Restaurant" src={ResIMG} />
                       </TableCell>
                       <TableCell>
-                        <strong>{res.restaurantName}</strong>
+                        <strong>{res.description}</strong>
                       </TableCell>
                       <TableCell>
                         <strong>{res.dateCreated}</strong>
                       </TableCell>
                       <TableCell>
-                        <strong>{res.location}</strong>
+                        <strong>{res.address}</strong>
                       </TableCell>
                       <TableCell>
                         {/* action buttons*/}
@@ -115,26 +103,6 @@ export class Restaurants extends Component {
                 </TableBody>
               </Table>
             </TableContainer>
-
-            <Modal
-              aria-labelledby="transition-modal-title"
-              aria-describedby="transition-modal-description"
-              className="modal"
-              open={this.state.setOpen}
-              onClose={this.handleClose}
-              closeAfterTransition
-              BackdropComponent={Backdrop}
-              BackdropProps={{
-                timeout: 500,
-              }}
-            >
-              <Fade in={this.state.setOpen}>
-                <div className="open">
-                  <h2 id="transition-modal-title">Edit Restaurant</h2>
-                  <p id="transition-modal-description">Form coming soon</p>
-                </div>
-              </Fade>
-            </Modal>
           </div>
         );
     }

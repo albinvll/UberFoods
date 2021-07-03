@@ -6,14 +6,26 @@ import './Dashboard.css'
 import Restaurants from './Pages/Restaurants';
 
 export class RestaurantDashboard extends Component {
+
+    
+
+    componentDidMount=()=>{
+        const accountTypeId = localStorage.getItem('accountTypeId');
+        console.log(accountTypeId);
+
+        if(accountTypeId != 3){
+            this.props.history.push("/");
+        }
+    }
+
     render() {
         return (
             <Router>
-                <div className="mainSection">
+                <div className="dashboard-mainSection">
                     <div className="drawer-container">
                         <Drawer/>
                     </div>
-                    <div className="left-content-container">
+                    <div className="dashboard-left-content-container">
                         <Switch>
                             <Route path="/resDashboard" component={DashboardPage}/>
                             <Route path="/resRestaurants" component={Restaurants}/>

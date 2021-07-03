@@ -16,7 +16,6 @@ import {
   Select,
 } from "@material-ui/core/";
 import client from "../../axios";
-import { Redirect } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Register() {
+export default function Register(props) {
   const classes = useStyles();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -51,6 +50,8 @@ export default function Register() {
   const [coDescription, setCoDescription] = useState("");
   const [coEmail, setCoEmail] = useState("");
   const [coCity, setCoCity] = useState("");
+
+  //#region ONCHANGE
 
   const onFirstNameText = (event) => {
     setFirstName(event.target.value);
@@ -95,7 +96,11 @@ export default function Register() {
   const onCoCityText = (event) => {
     setCoCity(event.target.value);
   };
+  
+  //#endregion 
 
+
+  //#region VALIDATE
   const validateFirstName = () => {
     if (firstName.length <= 0) {
       return false;
@@ -176,6 +181,10 @@ export default function Register() {
     }
   };
 
+  //#endregion
+  
+  
+  //#region API CALLS
   const createOrderer = async () => {
     const response = await client.post("Account/createOrdererAccount", {
       id: 0,
@@ -219,6 +228,8 @@ export default function Register() {
     });
   };
 
+  //#endregion
+
   const submitSignUp = async () => {
     try {
       if (
@@ -241,6 +252,7 @@ export default function Register() {
             createCorporateAccount();
           }
         }
+        props.history.push("/login");
       }
     } catch (error) {
       console.error(error.response.data);
