@@ -51,7 +51,7 @@ namespace UberFoodsAPI.Data
                 CommandType = CommandType.StoredProcedure
             };
 
-            insert.Parameters.AddWithValue("@KorporataId", restaurant.AddressId);
+            insert.Parameters.AddWithValue("@KorporataId", restaurant.CorporateId);
             insert.Parameters.AddWithValue("@PikaPershkrimi",restaurant.Description);
             insert.Parameters.AddWithValue("@AdresaPershkrimi", adresa.Description);
             insert.Parameters.AddWithValue("@AdresaX", 1.1);
