@@ -22,7 +22,7 @@ const Foods = (props) => {
 	};
 
 	useEffect(() => {
-		if (props.location.state.menuId && props.location.state.menuId > 0) {
+		if (props?.location?.state?.menuId && props?.location?.state?.menuId > 0) {
 			fetchData();
 		} else {
 			props.history.push("/");
