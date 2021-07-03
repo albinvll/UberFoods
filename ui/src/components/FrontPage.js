@@ -43,7 +43,7 @@ const FrontPage = ({ cart }) => {
       <Registration />
       <Subcribe />
       <Link to="/cart">
-        <a className="fixedButton" href>
+        <div className="fixedButton">
           <div className="roundedFixedBtn">
             <IconButton aria-label="cart">
               <StyledBadge badgeContent={cartCount} color="secondary">
@@ -51,7 +51,7 @@ const FrontPage = ({ cart }) => {
               </StyledBadge>
             </IconButton>
           </div>
-        </a>
+        </div>
       </Link>
     </div>
   );

@@ -21,6 +21,16 @@ namespace UberFoodsAPI.Data
             return table;
         }
 
+        public static DataTable GetRestaurantsFromCorpId(int CorpId)
+        {
+            DataTable table = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("RestaurantsFromCorpId_sp", PublicClass.ConnectionString);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddWithValue("@CorpId", CorpId);
+            da.Fill(table);
+            return table;
+        }
+
         public static void InsertRestaurant(Restaurant restaurant, Adresa adresa)
         {
             SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);

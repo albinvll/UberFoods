@@ -26,5 +26,14 @@ namespace UberFoodsAPI.Data
 
         }
 
+        public static DataTable FrontPageArticles()
+        {
+            DataTable table = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("Top3Articles_sp", PublicClass.ConnectionString);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.Fill(table);
+            return table;
+        }
+
     }
 }

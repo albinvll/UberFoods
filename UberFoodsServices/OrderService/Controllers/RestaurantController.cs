@@ -30,6 +30,25 @@ namespace UberFoodsAPI.Controllers
             return restaurantsList;
         }
 
+        [HttpGet("getRestaurantFromCorpId")]
+        public List<Restaurant> GetRestaurantFromCorpId(int CorpId)
+        {
+            DataTable restaurantsTable = RestaurantData.GetRestaurantsFromCorpId(CorpId);
+            List<Restaurant> restaurantsList = new List<Restaurant>(restaurantsTable.Rows.Count);
+            foreach (DataRow dr in restaurantsTable.Rows)
+            {
+                Restaurant temp = new Restaurant();
+                temp.Id = Convert.ToInt32(dr["Id"].ToString());
+                temp.CorporateId = Convert.ToInt64(dr["KorporataId"].ToString());
+                temp.Description = dr["Pershkrimi"].ToString();
+                temp.AddressId = Convert.ToInt64(dr["AdresaId"].ToString());
+                temp.TelephoneNr = dr["NrTelefonit"].ToString();
+                temp.MenuId = Convert.ToInt32(dr["MenuId"].ToString());
+                restaurantsList.Add(temp);
+            }
+            return restaurantsList;
+        }
+
         [HttpPost("createRestaurant")]
         public void CreateRestaurant([FromBody]newRestaurant restaurant)
         {

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FrontFood.css";
 import Burger from "../../../src/assets/burder.jpg";
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/food-order/actions";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import client from '../../axios';
 
 
 
@@ -12,30 +13,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const FrontFood = ({ addToCart }) => {
 
-  const [foods, setFoods] = useState([
-    {
-      id: 1,
-      description: "Hamburger",
-      price: "1.50",
-    },
-    {
-      id: 2,
-      description: "Hamberger Aba",
-      price: "1.00",
-    },
-    {
-      id: 3,
-      description: "Hamberger Shtepie",
-      price: "2.00",
-    },
-    {
-      id: 4,
-      description: "Hamburger Pule",
-      price: "2.50",
-    },
-  ]);
+  const [foods, setFoods] = useState([]);
 
   const notify = () => toast.success("Added to cart");
+
+  const fetchFoods= async ()=>{
+    const response = await client.get("Articles/getTop3Articles");
+
+    setFoods(response.data);
+  }
+
+  useEffect(()=>{
+    fetchFoods();
+  },[])
 
   return (
     <div className="mainSection">

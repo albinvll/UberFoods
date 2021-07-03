@@ -44,5 +44,23 @@ namespace UberFoodsAPI.Controllers
 
             return articleList;
         }
+
+        [HttpGet("getTop3Articles")]
+        public List<Article> GetTop3Articles()
+        {
+            DataTable articlesTable = ArticlesData.FrontPageArticles();
+            List<Article> articleList = new List<Article>(articlesTable.Rows.Count);
+
+            foreach(DataRow dr in articlesTable.Rows)
+            {
+                Article temp = new Article();
+                temp.Id = Convert.ToInt64(dr["Id"].ToString());
+                temp.Description = dr["Pershkrimi"].ToString();
+                temp.Price = Convert.ToDecimal(dr["Cmimi"].ToString());
+                articleList.Add(temp);
+            }
+
+            return articleList;
+        }
     }
 }
