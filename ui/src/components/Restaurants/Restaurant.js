@@ -11,43 +11,56 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
-const Restaurant = ({ restaurantData, addToCart }) => {
-  const [value, setValue] = React.useState(5);
+const Restaurant = ({ restaurantData, addToCart, props }) => {
+	const [value, setValue] = React.useState(5);
 
-  const notify = () => toast.success("Added to cart");
+	const notify = () => toast.success("Added to cart");
+	const onRestaurantClick = (event, id) => {
+    event.preventDefault();
+		props.history.push("/foods", {
+			menuId: id,
+		});
+	};
 
-  return (
-    <div className="food-container">
-      <div className="food-image">
-        <img src={RestaurantImg} alt="" style={{ width: "89%" }} />
-      </div>
-      <div className="food-desc">
-        <div className="food-desc-title">
-          <Link to={`/foods/${restaurantData.id}`}>
-            <h5>{restaurantData.description}</h5>
-          </Link>
-        </div>
+	return (
+		<div
+			className="food-container"
+			onClick={(event) => onRestaurantClick(event, restaurantData.id)}
+		>
+			<div className="food-image">
+				<img src={RestaurantImg} alt="" style={{ width: "89%" }} />
+			</div>
+			<div className="food-desc">
+				<div className="food-desc-title">
+					<p>
+						<h5>{restaurantData.description}</h5>
+					</p>
+				</div>
 
-        <div className="food-desc-rating">
-          <Box component="fieldset" mb={3} borderColor="transparent">
-            <Rating name="simple-controlled" value={value} readOnly />
-          </Box>
-        </div>
-      </div>
-      <div className="food-action">
-        <Link to={`/foods/${restaurantData.MenuId}`} style={{textDecoration:'none'}}>
-          <button id="foodpage-action"> Check menu</button>
-        </Link>
-        <ToastContainer />
-      </div>
-    </div>
-  );
+				<div className="food-desc-rating">
+					<Box component="fieldset" mb={3} borderColor="transparent">
+						<Rating
+							name="simple-controlled"
+							value={value}
+							readOnly
+						/>
+					</Box>
+				</div>
+			</div>
+			<div className="food-action">
+				<p>
+					<button id="foodpage-action"> Check menu</button>
+				</p>
+				<ToastContainer />
+			</div>
+		</div>
+	);
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    addToCart: (item) => dispatch(addToCart(item)),
-  };
+	return {
+		addToCart: (item) => dispatch(addToCart(item)),
+	};
 };
 
 export default connect(null, mapDispatchToProps)(Restaurant);
