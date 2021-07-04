@@ -29,6 +29,7 @@ export default class OrdersList extends Component {
 					<TableRow>
 						<TableCell>Id</TableCell>
 						<TableCell>Orderer Name</TableCell>
+						<TableCell>Restaurant Name</TableCell>
 						<TableCell>Ordered Date</TableCell>
 						<TableCell>Preparation Date</TableCell>
 						<TableCell>Pick up Date</TableCell>
@@ -43,6 +44,7 @@ export default class OrdersList extends Component {
 							<TableRow>
 								<TableCell>{element.id}</TableCell>
 								<TableCell>{element.ordererName}</TableCell>
+								<TableCell>{element.restaurantName}</TableCell>
 								<TableCell>{element.orderedDate}</TableCell>
 								<TableCell>{element.preparationDate}</TableCell>
 								<TableCell>{element.pickUpDate}</TableCell>

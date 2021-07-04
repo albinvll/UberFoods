@@ -44,6 +44,9 @@ namespace UberFoodsAPI.Controllers{
                     if (!string.IsNullOrEmpty(row["EmriMbiemriPorositesit"].ToString())) {
                         orderListItem.OrdererName = row["EmriMbiemriPorositesit"].ToString();
                     }
+                    if (!string.IsNullOrEmpty(row["PikaPershkrimi"].ToString())) {
+                        orderListItem.RestaurantName = row["PikaPershkrimi"].ToString();
+                    }
                     if (!string.IsNullOrEmpty(row["DataEPerfundimit"].ToString())) {
                         orderListItem.PreparationDate = Convert.ToDateTime(row["DataEPerfundimit"].ToString());
                     }

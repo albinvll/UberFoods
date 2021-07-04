@@ -414,11 +414,13 @@ BEGIN
 	SELECT P.Id
 		,DataERegjistrimit AS DataPorositur
 		,PR.Emri + ' ' + PR.Mbiemri AS EmriMbiemriPorositesit
+		,PK.Pershkrimi as PikaPershkrimi
 		,DataEPerfundimit
 		,DataEMarrjesNgaDerguesi
 		,DataEPranimit
 	FROM Porosia P
 	LEFT JOIN Perdoruesi PR ON P.PorositesiId = PR.Id
+	INNER JOIN Pika PK on P.PikaID = PK.Id
 	WHERE @PorositesiId IS NULL
 		OR P.PorositesiId = @PorositesiId
 END
@@ -429,11 +431,13 @@ BEGIN
 	SELECT P.Id
 		,DataERegjistrimit AS DataPorositur
 		,PR.Emri + ' ' + PR.Mbiemri AS EmriMbiemriPorositesit
+		,PK.Pershkrimi as PikaPershkrimi
 		,DataEPerfundimit
 		,DataEMarrjesNgaDerguesi
 		,DataEPranimit
 	FROM Porosia P
 	LEFT JOIN Perdoruesi PR ON P.PorositesiId = PR.Id
+	INNER JOIN Pika PK on P.PikaID = PK.Id
 	WHERE (
 			@DerguesiId IS NULL
 			OR P.DerguesiID = @DerguesiId
