@@ -34,7 +34,7 @@ export const menuItems = () => {
 	const accountTypeId = localStorage.getItem("accountTypeId");
 	if (accountTypeId) {
 		if (accountTypeId == 1) {
-			return [menuItems[0], menuItems[2], menuItems[5]];
+			return [menuItems[0], menuItems[2], menuItems[4], menuItems[5]];
 		} else if (accountTypeId == 2) {
 			return [menuItems[0], menuItems[4], menuItems[5]];
 		} else {

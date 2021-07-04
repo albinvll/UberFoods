@@ -108,7 +108,7 @@ CREATE TABLE Porosia (
 	Id BIGINT PRIMARY KEY IDENTITY NOT NULL
 	,PorositesiId BIGINT NOT NULL
 	,DataERegjistrimit DATETIME
-	,DerguesiID BIGINT NOT NULL
+	,DerguesiID BIGINT 
 	,PikaID INT NOT NULL
 	,DataEPerfundimit DATETIME
 	,DataEMarrjesNgaDerguesi DATETIME
