@@ -24,6 +24,7 @@ class Order extends PureComponent {
 		cardName: "",
 		cardDate: "",
 		cardCVV: "",
+		comment: "",
 		selectedRestaurant: "",
 	};
 
@@ -59,6 +60,9 @@ class Order extends PureComponent {
 	onCardCVVText = (event) => {
 		this.setState({ cardCVV: event.target.value });
 	};
+	onCommentText = (event) => {
+		this.setState({ comment: event.target.value });
+	};
 
 	onFinishOrderClick = (event) => {
 		event.preventDefault();
@@ -68,17 +72,20 @@ class Order extends PureComponent {
 		const orderHeader = {
 			ordererId: parseInt(userId),
 			restaurantId: parseInt(restaurantId),
-			comment: "",
+			comment: this.state.comment,
 		};
-		cart.forEach(element=>delete element.description);
+		cart.forEach((element) => delete element.description);
 		const order = {
 			orderHeader,
-			orderArticles: cart
-		}
-		console.log(order)
+			orderArticles: cart,
+		};
+		console.log(order);
 		client
-			.post("Order/finishOrder",order)
-			.then((response) => console.log("Ok"))
+			.post("Order/finishOrder", order)
+			.then((response) => {
+				console.log("Ok");
+				this.props.history.push("/");
+			})
 			.catch((error) => console.log(error));
 	};
 
@@ -132,6 +139,14 @@ class Order extends PureComponent {
 								type="text"
 								value={this.state.cardCVV}
 								onChange={this.onCardCVVText}
+							/>
+							Comment
+							<input
+								placeholder="Comment..."
+								id="order-input"
+								type="text"
+								value={this.state.comment}
+								onChange={this.onCommentText}
 							/>
 						</form>
 
