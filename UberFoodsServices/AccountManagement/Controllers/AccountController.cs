@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrderService.Data;
-using OrderService.Models;
+using AccountManagement.Data;
+using AccountManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace OrderService.Controllers
+namespace AccountManagement.Controllers
 {
     [ApiController]
     [Route("[controller]")]

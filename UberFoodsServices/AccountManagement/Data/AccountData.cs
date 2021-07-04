@@ -1,9 +1,9 @@
-﻿using OrderService.Models;
+﻿using AccountManagement.Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace OrderService.Data
+namespace AccountManagement.Data
 {
     public class AccountData
     {

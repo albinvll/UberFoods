@@ -5,7 +5,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using UberFoodsAPI.Models;
 
 namespace OrderService.Data {
     public static class OrderData {

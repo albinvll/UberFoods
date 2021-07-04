@@ -8,7 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UberFoodsAPI.Controllers{
+namespace OrderService.Controllers{
     [Route("[controller]")]
     [ApiController]
     public class OrderController : ControllerBase {

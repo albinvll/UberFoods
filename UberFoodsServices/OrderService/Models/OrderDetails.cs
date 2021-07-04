@@ -1,4 +1,4 @@
-﻿namespace UberFoodsAPI.Models
+﻿namespace OrderService.Models
 {
     public class OrderDetails
     {

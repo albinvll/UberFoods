@@ -1,4 +1,4 @@
-﻿namespace UberFoodsAPI.Models
+﻿namespace RestaurantManagement.Models
 {
     public class Restaurant
     {

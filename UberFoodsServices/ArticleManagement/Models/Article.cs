@@ -1,4 +1,4 @@
-﻿namespace UberFoodsAPI.Models
+﻿namespace ArticleManagement.Models
 {
     public class Article
     {

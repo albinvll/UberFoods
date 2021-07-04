@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using UberFoodsAPI.Data;
-using UberFoodsAPI.Models;
+using RestaurantManagement.Data;
+using RestaurantManagement.Models;
 
-namespace UberFoodsAPI.Controllers
+namespace RestaurantManagement.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -28,6 +28,37 @@ namespace UberFoodsAPI.Controllers
                 restaurantsList.Add(temp);
             }
             return restaurantsList;
+        }
+
+        [HttpGet("getRestaurantFromCorpId")]
+        public List<Restaurant> GetRestaurantFromCorpId(int CorpId)
+        {
+            DataTable restaurantsTable = RestaurantData.GetRestaurantsFromCorpId(CorpId);
+            List<Restaurant> restaurantsList = new List<Restaurant>(restaurantsTable.Rows.Count);
+            foreach (DataRow dr in restaurantsTable.Rows)
+            {
+                Restaurant temp = new Restaurant();
+                temp.Id = Convert.ToInt32(dr["Id"].ToString());
+                temp.CorporateId = Convert.ToInt64(dr["KorporataId"].ToString());
+                temp.Description = dr["Pershkrimi"].ToString();
+                temp.AddressId = Convert.ToInt64(dr["AdresaId"].ToString());
+                temp.TelephoneNr = dr["NrTelefonit"].ToString();
+                temp.MenuId = Convert.ToInt32(dr["MenuId"].ToString());
+                restaurantsList.Add(temp);
+            }
+            return restaurantsList;
+        }
+
+        [HttpPost("createRestaurant")]
+        public void CreateRestaurant([FromBody]NewRestaurant restaurant)
+        {
+            RestaurantData.InsertRestaurant(restaurant.Restaurant, restaurant.Adresa);
+        }
+
+        [HttpDelete("deleteRestaurantById")]
+        public void DeleteRestaurantById(int restaurantId, int menuId)
+        {
+            RestaurantData.DeleteRestaurantById(restaurantId, menuId);
         }
     }
 }

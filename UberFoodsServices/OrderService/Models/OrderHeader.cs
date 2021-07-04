@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UberFoodsAPI.Models
+namespace OrderService.Models
 {
     public class OrderHeader
     {
