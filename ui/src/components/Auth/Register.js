@@ -16,6 +16,8 @@ import {
   Select,
 } from "@material-ui/core/";
 import client from "../../axios";
+import 'rsuite/dist/styles/rsuite-default.css';
+import { Alert } from 'rsuite';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -98,91 +100,6 @@ export default function Register(props) {
   };
   
   //#endregion 
-
-
-  //#region VALIDATE
-  const validateFirstName = () => {
-    if (firstName.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validateLastName = () => {
-    if (lastName.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validateEmail = () => {
-    if (email.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validatePassword = () => {
-    if (password.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validateAddress = () => {
-    if (address.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validateDelivery = () => {
-    if (delivery.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validateCoDesc = () => {
-    if (coDescription.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validateCoEmail = () => {
-    if (coEmail.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validateCoCity = () => {
-    if (coCity.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const validatePayment = () => {
-    if (payment.length <= 0) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  //#endregion
-  
   
   //#region API CALLS
   const createOrderer = async () => {
@@ -229,29 +146,35 @@ export default function Register(props) {
 
   //#endregion
 
+  const alertWarning = () =>{
+    Alert.warning('Some of your informations are empty!');
+  }
+  
   const submitSignUp = async () => {
     try {
       if (
-        validateFirstName &&
-        validateLastName &&
-        validatePassword &&
-        validateAddress &&
-        validateEmail
+        firstName != "" &&
+        lastName !="" &&
+        password !="" &&
+        address != "" &&
+        email !=""
       ) {
         if (accountType === 1) {
-          if (validatePayment()) {
+          if (payment != "") {
             createOrderer();
           }
         } else if (accountType === 2) {
-          if (validateDelivery()) {
+          if (delivery != "") {
             createDeliveryAccount();
           }
         } else {
-          if (validateCoEmail && validateCoDesc && validateCoCity) {
+          if (coEmail !="" && coDescription !="" && coCity !="") {
             createCorporateAccount();
           }
         }
         props.history.push("/login");
+      }else{
+        alertWarning();
       }
     } catch (error) {
       console.error(error.response.data);

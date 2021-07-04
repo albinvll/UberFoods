@@ -70,5 +70,41 @@ namespace UberFoodsAPI.Data
             insert.Parameters.AddWithValue("@NrTelefonit", restaurant.TelephoneNr);
             insert.ExecuteNonQuery();
         }
+
+        public static void DeleteRestaurantById(int restaurantId)
+        {
+            SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);
+            SqlTransaction tran = default;
+
+            try
+            {
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                DeleteRestaurantByIdCommand(restaurantId, cnn, tran);
+                tran.Commit();
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.StackTrace);
+                tran.Rollback();
+                throw;
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+
+        public static void DeleteRestaurantByIdCommand(int restaurantId, SqlConnection cnn, SqlTransaction tran)
+        {
+            SqlCommand delete = new SqlCommand("DeleteRestaurntById_sp", cnn, tran)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            delete.Parameters.AddWithValue("@RestaurantId", restaurantId);
+            delete.ExecuteNonQuery();
+        }
     }
 }
