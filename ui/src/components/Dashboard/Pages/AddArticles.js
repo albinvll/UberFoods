@@ -50,16 +50,6 @@ const AddArticles = (props) => {
     });
   };
 
-  /*const getRestaurantsBasedOnCorpId = async () => {
-    const currentCorpId = parseInt(localStorage.getItem("corporateId"));
-    const response = await client.get("Restaurant/getRestaurantFromCorpId", {
-      params: {
-        CorpId: currentCorpId,
-      },
-    });
-    console.log(response.data);
-  };*/
-
   const fetchRestaurantsBasedOnCorpId = async () => {
     const currentCorpId = parseInt(localStorage.getItem("corporateId"));
     const response = await client.get("/Restaurant/getRestaurantFromCorpId", {

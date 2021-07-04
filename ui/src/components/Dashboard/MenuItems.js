@@ -32,7 +32,7 @@ const MenuItems=[
         },
         {
             title: 'Profile',
-            url:'resProfile',
+            url:'profile',
             icon:<AccountBoxIcon/>
         }
     ]

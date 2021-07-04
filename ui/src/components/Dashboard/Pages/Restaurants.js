@@ -91,14 +91,6 @@ export class Restaurants extends Component {
                   </TableCell>
                   <TableCell>
                     {/* action buttons*/}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      style={{ marginRight: "10px" }}
-                      onClick={this.handleOpen}
-                    >
-                      Edit
-                    </Button>
                     <Button 
                       variant="contained" 
                       color="secondary"

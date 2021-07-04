@@ -154,5 +154,15 @@ namespace OrderService.Data
             insert.Parameters.AddWithValue("@Komuna", corporate.City);
             insert.ExecuteNonQuery();
         }
+
+        public static DataTable GetUserById(int userId)
+        {
+            DataTable table = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter("GetUserById_sp", PublicClass.ConnectionString);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddWithValue("@UserId", userId);
+            da.Fill(table);
+            return table;
+        }
     }
 }

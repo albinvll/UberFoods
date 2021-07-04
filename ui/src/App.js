@@ -19,49 +19,48 @@ import requireAuth from "./components/ProtectedRoute";
 import Logout from "./components/Auth/Logout";
 import AddArticles from "./components/Dashboard/Pages/AddArticles";
 import OrdersList from "./components/Order/OrdersList";
+import Profile from "./components/Dashboard/Pages/Profile";
 
 export default class App extends Component {
-	static displayName = App.name;
+  static displayName = App.name;
 
-	render() {
-		return (
-			<>
-				<Route exact path="/order" component={requireAuth(Order)} />
-				<Route exact path="/login" component={LoginForm} />
-				<Route exact path="/signup" component={Register} />
-				<Route
-					exact
-					path="/dashboard"
-					component={requireAuth(Dashboard)}
-				/>
-				<Route
-					exact
-					path="/add/restaurant"
-					component={requireAuth(AddRestaurant)}
-				/>
+  render() {
+    return (
+      <>
+        <Route exact path="/order" component={requireAuth(Order)} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/signup" component={Register} />
+        <Route exact path="/dashboard" component={requireAuth(Dashboard)} />
+        <Route
+          exact
+          path="/add/restaurant"
+          component={requireAuth(AddRestaurant)}
+        />
 
-				<Route
-					exact
-					path="/add/article"
-					component={requireAuth(AddArticles)}
-				/>
-				<Route exact path="/" component={FrontPage} />
-				<Route exact path="/foods" component={requireAuth(Foods)} />
-				<Route exact path="/cart" component={requireAuth(Cart)} />
-				<Route exact path="/ordersList" component={requireAuth(OrdersList)} />
-				<Route exact path="/logout" component={Logout} />
-				<Route
-					exact
-					path="/restaurants"
-					component={requireAuth(RestaurantList)}
-				/>
+        <Route exact path="/add/article" component={requireAuth(AddArticles)} />
+        <Route exact path="/" component={FrontPage} />
+        <Route exact path="/foods" component={requireAuth(Foods)} />
+        <Route exact path="/cart" component={requireAuth(Cart)} />
+        <Route exact path="/ordersList" component={requireAuth(OrdersList)} />
+        <Route exact path="/logout" component={Logout} />
+        <Route
+          exact
+          path="/restaurants"
+          component={requireAuth(RestaurantList)}
+        />
 
-				{/* .
+        <Route
+          exact
+          path="/profile"
+          component={requireAuth(Profile)}
+        />
+
+        {/* .
         <Route exact path='/home' component={FrontPage} />
         <Route exact path='/sign-in' component={SignIn} />
         <Route exact path='/foods' component={Food} />
       */}
-			</>
-		);
-	}
+      </>
+    );
+  }
 }

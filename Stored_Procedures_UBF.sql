@@ -477,3 +477,20 @@ BEGIN
 		,DerguesiID = @DerguesiId
 	WHERE Id = @PorosiaId
 END
+
+CREATE PROCEDURE [dbo].[DeleteArtikulliById_sp](
+	@ArtikulliId bigint
+)
+AS
+BEGIN
+	DELETE FROM ArtikujtMenus where ArtikulliId = @ArtikulliId
+	DELETE FROM Artikulli where Id = @ArtikulliId
+END
+
+CREATE PROCEDURE GetUserById_sp(
+	@UserId bigint
+)
+AS
+BEGIN
+	select Emri, Mbiemri, Email, Password from Perdoruesi WHERE Id = @UserId
+END

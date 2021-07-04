@@ -5,6 +5,7 @@ import DashboardPage from './Pages/DashboardPage';
 import './Dashboard.css'
 import Restaurants from './Pages/Restaurants';
 import Articles from './Pages/Articles';
+import Profile from './Pages/Profile';
 
 export class RestaurantDashboard extends Component {
 
@@ -30,6 +31,7 @@ export class RestaurantDashboard extends Component {
                             <Route path="/resDashboard" component={DashboardPage}/>
                             <Route path="/resRestaurants" component={Restaurants}/>
                             <Route path="/articles" component={Articles}/>
+                            <Route path="/profile" component={Profile}/>
                         </Switch>
                     </div>
                 </div>

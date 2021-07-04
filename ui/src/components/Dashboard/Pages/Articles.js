@@ -109,7 +109,6 @@ const Articles = (props) => {
           <div className="food-desc-rating"></div>
         </div>
         <div className="food-action">
-          <button id="foodpage-action">Edit</button>
           <button id="foodpage-action" onClick={(event)=>onDeleteClickButton(event, article.id)}>Delete</button>
         </div>
       </div>
