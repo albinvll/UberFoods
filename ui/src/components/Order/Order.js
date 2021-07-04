@@ -28,6 +28,9 @@ class Order extends PureComponent {
 	};
 
 	componentDidMount() {
+		if (this.props.cart.length <= 0) {
+			this.props.history.push("/");
+		}
 		/*client.get("Restaurant/getRestaurant").then((response) => {
 			this.setState({ selectedLocation: response.data });
 		});*/
@@ -57,31 +60,18 @@ class Order extends PureComponent {
 		this.setState({ cardCVV: event.target.value });
 	};
 
-	handleChangeCheckBox = async (event, food) => {
-		const isChecked = event.target.checked;
-		if (isChecked) {
-			await this.setState({
-				selectedArticles: [...this.state.selectedArticles, food],
-			});
-		} else {
-			await this.setState({
-				selectedArticles: this.state.selectedArticles.filter(
-					(element) => element !== food
-				),
-			});
+	onFinishOrderClick = (event) => {
+		event.preventDefault();
+		const cart = this.props.cart;
+		const restaurantId = localStorage.getItem("orderedRestaurantId");
+		const userId = localStorage.getItem("userId");
+		console.log(cart);
+		const orderHeader = {
+			ordererId: userId,
+			restaurantId:restaurantId,
+			comment: ""
 		}
-		this.calculateSum();
-	};
-
-	handleChangeRestaurant = async (event, location) => {
-		await this.setState({ selectedRestaurant: location });
-		client
-			.get("Articles/getArticlesFromRestaurantId", {
-				params: { menuId: location.menuId },
-			})
-			.then((response) => {
-				this.setState({ availableArticles: response.data });
-			});
+		console.log(orderHeader);
 	};
 
 	render() {
@@ -97,21 +87,6 @@ class Order extends PureComponent {
 							</option>
 						))}
 					</select>
-					<div className="order-checkbox">
-						{this.state.availableArticles.map((food) => (
-							<label key={food.id} id="checkbox-label">
-								<input
-									onChange={(event) =>
-										this.handleChangeCheckBox(event, food)
-									}
-									id="order-checkbox"
-									type="checkbox"
-								/>
-								{food.description}
-							</label>
-						))}
-					</div>
-
 					<div className="order-right-side">
 						<p id="order-desc">
 							Please full fill your credit card informations below
@@ -162,6 +137,9 @@ class Order extends PureComponent {
 								&euro;
 							</div>
 						</div>
+						<button onClick={this.onFinishOrderClick}>
+							FINISH ORDER
+						</button>
 					</div>
 				</section>
 			</div>

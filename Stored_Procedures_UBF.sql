@@ -310,10 +310,6 @@ BEGIN
 	DELETE FROM Menu where Id = @MenuId
 END
 
-
-
-
-
 CREATE PROCEDURE InsertArtikulliMenus_sp(
 	@Pershkrimi varchar(255),
 	@Cmimi decimal(18,2),
@@ -326,4 +322,68 @@ BEGIN
 	SELECT @ArtikulliRi = MAX(Id) FROM Artikulli
 
 	INSERT INTO ArtikujtMenus VALUES(@ArtikulliRi, @MenuId)
+END
+
+CREATE PROCEDURE PorosiaNgaPorositesiHeaderInsert_sp (
+	@PorositesiId BIGINT
+	,@PikaID INT
+	,@Komenti VARCHAR(255) = NULL
+	)
+AS
+BEGIN
+	INSERT INTO Porosia (
+		PorositesiId
+		,DataERegjistrimit
+		,DerguesiID
+		,PikaID
+		,DataEPerfundimit
+		,DataEMarrjesNgaDerguesi
+		,DataEPranimit
+		,Komenti
+		,AdresaSekondare
+		,Anuluar
+		)
+	VALUES (
+		@PorositesiId
+		,GETDATE()
+		,NULL
+		,@PikaID
+		,NULL
+		,NULL
+		,NULL
+		,@Komenti
+		,NULL
+		,0
+		)
+		select MAX(Id) from Porosia
+END
+
+CREATE PROCEDURE PorosiaNgaPorositesiDetaleInsert_sp (
+	@PorosiaId BIGINT
+	,@ArtikulliId BIGINT
+	,@Sasia DEC(18, 2)
+	,@Rabati DEC(18, 2)=null
+	,@EkstraRabati DEC(18, 2)=null
+	,@Cmimi DEC(18, 3)
+	)
+AS
+BEGIN
+	INSERT INTO PorosiaDetale (
+		PorosiaId
+		,ArtikulliId
+		,Sasia
+		,Rabati
+		,EkstraRabati
+		,Cmimi
+		,VleraPerfundimtare
+		)
+	VALUES (
+		@PorosiaId
+		,@ArtikulliId
+		,@Sasia
+		,@Rabati
+		,@EkstraRabati
+		,@Cmimi
+		,@Sasia * @Cmimi
+		)
 END

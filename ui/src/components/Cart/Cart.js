@@ -34,7 +34,6 @@ const useStyles = makeStyles({
 
 const Cart = ({ cart }) => {
 	const classes = useStyles();
-	const bull = <span className={classes.bullet}>•</span>;
 
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [totalItems, setTotalItems] = useState(0);
