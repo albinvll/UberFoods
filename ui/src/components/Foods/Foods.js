@@ -9,7 +9,6 @@ const Foods = (props) => {
 	const [products, setProducts] = useState([]);
 
 	const fetchData = async () => {
-		console.log(props);
 		const response = await client.get("Articles/getArticlesFromRestaurantId", {
 			params: {
 				menuId: props.location.state.menuId,
@@ -17,7 +16,6 @@ const Foods = (props) => {
 		});
 		if(response && response.data){
       setProducts(response.data);
-			console.log(response.data)
 		}
 	};
 

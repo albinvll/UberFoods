@@ -11,7 +11,6 @@ export class RestaurantDashboard extends Component {
 
     componentDidMount=()=>{
         const accountTypeId = localStorage.getItem('accountTypeId');
-        console.log(accountTypeId);
 
         if(accountTypeId != 3){
             this.props.history.push("/");

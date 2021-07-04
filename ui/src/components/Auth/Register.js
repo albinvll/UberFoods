@@ -210,7 +210,6 @@ export default function Register(props) {
   };
 
   const createCorporateAccount = async () => {
-	  console.log('mrenametodes');
     const response = await client.post("Account/createCorporateAccount", {
       corporate: {
         description: coDescription,

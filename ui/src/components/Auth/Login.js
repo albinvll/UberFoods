@@ -45,7 +45,6 @@ export default function Login(props) {
 	const [accountType, setAccountType] = useState(1);
 
 	useEffect(() => {
-		console.log(auth.isLoggedIn())
 		if (auth.isLoggedIn()) {
 			props.history.push("/");
 		}

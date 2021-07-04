@@ -74,14 +74,12 @@ class Order extends PureComponent {
 	};
 
 	handleChangeRestaurant = async (event, location) => {
-		console.log("test");
 		await this.setState({ selectedRestaurant: location });
 		client
 			.get("Articles/getArticlesFromRestaurantId", {
 				params: { menuId: location.menuId },
 			})
 			.then((response) => {
-				console.log(response.data);
 				this.setState({ availableArticles: response.data });
 			});
 	};
