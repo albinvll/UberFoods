@@ -56,9 +56,9 @@ namespace UberFoodsAPI.Controllers
         }
 
         [HttpDelete("deleteRestaurantById")]
-        public void DeleteRestaurantById(int restaurantId)
+        public void DeleteRestaurantById(int restaurantId, int menuId)
         {
-            RestaurantData.DeleteRestaurantById(restaurantId);
+            RestaurantData.DeleteRestaurantById(restaurantId, menuId);
         }
     }
 }

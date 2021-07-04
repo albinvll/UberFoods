@@ -71,7 +71,7 @@ namespace UberFoodsAPI.Data
             insert.ExecuteNonQuery();
         }
 
-        public static void DeleteRestaurantById(int restaurantId)
+        public static void DeleteRestaurantById(int restaurantId, int menuId)
         {
             SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);
             SqlTransaction tran = default;
@@ -80,7 +80,7 @@ namespace UberFoodsAPI.Data
             {
                 cnn.Open();
                 tran = cnn.BeginTransaction();
-                DeleteRestaurantByIdCommand(restaurantId, cnn, tran);
+                DeleteRestaurantByIdCommand(restaurantId,menuId, cnn, tran);
                 tran.Commit();
             }
             catch (Exception e)
@@ -96,7 +96,7 @@ namespace UberFoodsAPI.Data
         }
 
 
-        public static void DeleteRestaurantByIdCommand(int restaurantId, SqlConnection cnn, SqlTransaction tran)
+        public static void DeleteRestaurantByIdCommand(int restaurantId, int menuId, SqlConnection cnn, SqlTransaction tran)
         {
             SqlCommand delete = new SqlCommand("DeleteRestaurntById_sp", cnn, tran)
             {
@@ -104,6 +104,7 @@ namespace UberFoodsAPI.Data
             };
 
             delete.Parameters.AddWithValue("@RestaurantId", restaurantId);
+            delete.Parameters.AddWithValue("@MenuId", menuId);
             delete.ExecuteNonQuery();
         }
     }

@@ -238,14 +238,15 @@ BEGIN
 		AND @Password = P.Password
 END
 
-CREATE PROCEDURE PikaInsert_sp (
-	@KorporataId BIGINT
-	,@PikaPershkrimi VARCHAR(255)
-	,@AdresaPershkrimi VARCHAR(255)
-	,@AdresaX DECIMAL(18, 12)
-	,@AdresaY DECIMAL(18, 12)
-	,@AdresaZ DECIMAL(18, 12)
-	,@NrTelefonit VARCHAR(255)
+
+CREATE PROCEDURE PikaInsert_sp(
+	@KorporataId bigint,
+	@PikaPershkrimi varchar(255),
+	@AdresaPershkrimi VARCHAR(255),
+	@AdresaX DECIMAL(18, 12),
+	@AdresaY DECIMAL(18, 12),
+	@AdresaZ DECIMAL(18, 12),
+	@NrTelefonit varchar(255)
 	)
 AS
 BEGIN
@@ -253,114 +254,60 @@ BEGIN
 
 	INSERT INTO Adresa
 	VALUES (
-		@AdresaX
-		,@AdresaY
-		,@AdresaZ
-		,@AdresaPershkrimi
+		@AdresaX,
+		@AdresaY,
+		@AdresaZ,
+		@AdresaPershkrimi
 		)
 
 	SELECT @AdresaEReID = MAX(Id)
 	FROM Adresa
 
 	DECLARE @MenuEReID BIGINT
-
-	INSERT INTO Menu
-	VALUES (@PikaPershkrimi)
+	
+	INSERT INTO Menu values(@PikaPershkrimi)
 
 	SELECT @MenuEReID = MAX(Id)
 	FROM Menu
 
-	INSERT INTO Pika
-	VALUES (
-		@KorporataId
-		,@PikaPershkrimi
-		,@AdresaEReID
-		,@NrTelefonit
-		,@MenuEReID
-		)
+	INSERT INTO Pika 
+	VALUES(
+		@KorporataId,
+		@PikaPershkrimi,
+		@AdresaEReID,
+		@NrTelefonit,
+		@MenuEReID
+	)
 END
+
+
 
 CREATE PROCEDURE Top3Articles_sp
 AS
 BEGIN
-	SELECT TOP 3 Id
-		,Pershkrimi
-		,Cmimi
-	FROM Artikulli
+	SELECT TOP 3 Id, Pershkrimi, Cmimi from Artikulli
 END
 
-CREATE PROCEDURE RestaurantsFromCorpId_sp (@CorpId BIGINT)
+
+CREATE PROCEDURE RestaurantsFromCorpId_sp (
+	@CorpId bigint
+)
 AS
 BEGIN
-	SELECT Id
-		,KorporataId
-		,Pershkrimi
-		,AdresaId
-		,NrTelefonit
-		,MenuId
-	FROM Pika
+	SELECT Id, KorporataId, Pershkrimi, AdresaId, NrTelefonit, MenuId FROM PIKA
 	WHERE KorporataId = @CorpId
 END
 
-CREATE PROCEDURE PorosiaNgaPorositesiHeaderInsert_sp (
-	@PorositesiId BIGINT
-	,@PikaID INT
-	,@Komenti VARCHAR(255) = NULL
-	)
+
+
+CREATE PROCEDURE DeleteRestaurntById_sp(
+	@RestaurantId bigint,
+	@MenuId bigint
+)
 AS
 BEGIN
-	INSERT INTO Porosia (
-		PorositesiId
-		,DataERegjistrimit
-		,DerguesiID
-		,PikaID
-		,DataEPerfundimit
-		,DataEMarrjesNgaDerguesi
-		,DataEPranimit
-		,Komenti
-		,AdresaSekondare
-		,Anuluar
-		)
-	VALUES (
-		@PorositesiId
-		,GETDATE()
-		,NULL
-		,@PikaID
-		,NULL
-		,NULL
-		,NULL
-		,@Komenti
-		,NULL
-		,0
-		)
+	DELETE FROM Menu where Id = @MenuId
+	DELETE FROM PIKA WHERE Id = @RestaurantId
 END
 
-CREATE PROCEDURE PorosiaNgaPorositesiDetaleInsert_sp (
-	@PorosiaId BIGINT
-	,@ArtikulliId BIGINT
-	,@Sasia DEC(18, 2)
-	,@Rabati DEC(18, 2)
-	,@EkstraRabati DEC(18, 2)
-	,@Cmimi DEC(18, 3)
-	)
-AS
-BEGIN
-	INSERT INTO PorosiaDetale (
-		PorosiaId
-		,ArtikulliId
-		,Sasia
-		,Rabati
-		,EkstraRabati
-		,Cmimi
-		,VleraPerfundimtare
-		)
-	VALUES (
-		@PorosiaId
-		,@ArtikulliId
-		,@Sasia
-		,@Rabati
-		,@EkstraRabati
-		,@Cmimi
-		,@Sasia * @Cmimi
-		)
-END
+

@@ -29,16 +29,18 @@ export class Restaurants extends Component {
     this.setState({ setOpen: false });
   };
 
-  deleteRestaurantById = async (id) =>{
+  deleteRestaurantById = async (id, menuId) =>{
     const response = await client.delete("Restaurant/deleteRestaurantById",{
       params:{
-        restaurandId: id
+        restaurantId: id,
+        menuId: menuId
       }
     })
   }
 
-  onClickDeleteRestaurant = (id) =>{
-    this.deleteRestaurantById(id);
+  onClickDeleteRestaurant = (event,id, menuId) =>{
+    event.preventDefault();
+    this.deleteRestaurantById(id, menuId);
   }
 
   fetchRestaurantsBasedOnCorpId = async () => {
@@ -72,6 +74,7 @@ export class Restaurants extends Component {
           <Table aria-label="simple table" className="res-table">
             <TableHead>
               <TableRow>
+                <TableCell>ID</TableCell>
                 <TableCell>#</TableCell>
                 <TableCell>Restaurant Name</TableCell>
                 <TableCell>Added Date</TableCell>
@@ -82,6 +85,9 @@ export class Restaurants extends Component {
             <TableBody>
               {this.state.restaurants.map((res) => (
                 <TableRow key={res.id}>
+                  <TableCell>
+                    <strong>{res.id}</strong>
+                  </TableCell>
                   <TableCell>
                     <Avatar alt="Restaurant" src={ResIMG} />
                   </TableCell>
@@ -107,7 +113,7 @@ export class Restaurants extends Component {
                     <Button 
                       variant="contained" 
                       color="secondary"
-                      onClick={this.onClickDeleteRestaurant(res.id)}
+                      onClick={(event)=>this.onClickDeleteRestaurant(event,res.id, res.menuId)}
                     >
                       Delete
                     </Button>
