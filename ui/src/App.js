@@ -18,6 +18,7 @@ import RestaurantList from "./components/Restaurants/RestaurantList";
 import requireAuth from "./components/ProtectedRoute";
 import Logout from "./components/Auth/Logout";
 import AddArticles from "./components/Dashboard/Pages/AddArticles";
+import OrdersList from "./components/Order/OrdersList";
 
 export default class App extends Component {
 	static displayName = App.name;
@@ -47,6 +48,7 @@ export default class App extends Component {
 				<Route exact path="/" component={FrontPage} />
 				<Route exact path="/foods" component={requireAuth(Foods)} />
 				<Route exact path="/cart" component={requireAuth(Cart)} />
+				<Route exact path="/ordersList" component={requireAuth(OrdersList)} />
 				<Route exact path="/logout" component={Logout} />
 				<Route
 					exact

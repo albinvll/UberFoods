@@ -62,16 +62,24 @@ class Order extends PureComponent {
 
 	onFinishOrderClick = (event) => {
 		event.preventDefault();
-		const cart = this.props.cart;
+		const cart = this.props.cart.map((x) => x);
 		const restaurantId = localStorage.getItem("orderedRestaurantId");
 		const userId = localStorage.getItem("userId");
-		console.log(cart);
 		const orderHeader = {
-			ordererId: userId,
-			restaurantId:restaurantId,
-			comment: ""
+			ordererId: parseInt(userId),
+			restaurantId: parseInt(restaurantId),
+			comment: "",
+		};
+		cart.forEach(element=>delete element.description);
+		const order = {
+			orderHeader,
+			orderArticles: cart
 		}
-		console.log(orderHeader);
+		console.log(order)
+		client
+			.post("Order/finishOrder",order)
+			.then((response) => console.log("Ok"))
+			.catch((error) => console.log(error));
 	};
 
 	render() {

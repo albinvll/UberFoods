@@ -12,7 +12,9 @@ namespace OrderService.Controllers {
     [ApiController]
     public class OrderController : ControllerBase {
         [HttpPost("finishOrder")]
-        public IActionResult FinishOrder([FromBody] CompleteOrder order) {
+        public IActionResult FinishOrder([FromBody]CompleteOrder order) {
+            if (ModelState.IsValid) { 
+            }
             try {
                 OrderData.InsertOrder(order);
                 return Ok();

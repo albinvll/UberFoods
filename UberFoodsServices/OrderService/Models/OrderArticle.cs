@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 namespace OrderService.Models {
     public class OrderArticle {
         public long Id { get; set; }
-        public string Description { get; set; }
         public decimal Price { get; set; }
         public decimal Qty { get; set; }
     }
