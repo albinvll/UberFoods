@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Button,
@@ -6,6 +6,10 @@ import {
   TextField,
   Typography,
   makeStyles,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@material-ui/core/";
 import client from "../../../axios";
 
@@ -28,29 +32,51 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
-export default function AddArticles(props) {
+const AddArticles = (props) => {
   const classes = useStyles();
   const [description, setDescription] = useState("");
-  const [cmimi,setCmimi] = useState("");
+  const [cmimi, setCmimi] = useState("");
+  const [restaurants, setRestaurants] = useState([]);
+  const [selectedRes, setSelectedRes] = useState(0);
 
-  const insertArticle = async () =>{
+  const insertArticle = async () => {
     const response = await client.post("Articles/insertArtikulli", {
-        article: {
-          id: 0,
-          description: description,
-          price: cmimi
-        },
-        menuId: 1
+      article: {
+        id: 0,
+        description: description,
+        price: cmimi,
+      },
+      menuId: selectedRes,
     });
-  }
+  };
+
+  /*const getRestaurantsBasedOnCorpId = async () => {
+    const currentCorpId = parseInt(localStorage.getItem("corporateId"));
+    const response = await client.get("Restaurant/getRestaurantFromCorpId", {
+      params: {
+        CorpId: currentCorpId,
+      },
+    });
+    console.log(response.data);
+  };*/
+
+  const fetchRestaurantsBasedOnCorpId = async () => {
+    const currentCorpId = parseInt(localStorage.getItem("corporateId"));
+    const response = await client.get("/Restaurant/getRestaurantFromCorpId", {
+      params: {
+        CorpId: currentCorpId,
+      },
+    });
+    setRestaurants(response.data);
+    console.log(response.data);
+  };
 
   const onSubmitClick = async (event) => {
     event.preventDefault();
-    try { 
-      if (description !="" && cmimi != "") {
+    try {
+      if (description != "" && cmimi != "") {
         insertArticle();
-        props.history.push("/dashboard")
+        props.history.push("/dashboard");
       } else {
         alert("Empty fields!");
       }
@@ -58,6 +84,10 @@ export default function AddArticles(props) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    fetchRestaurantsBasedOnCorpId();
+  }, []);
   //#region ONCHANGE
   const onNumberText = (event) => {
     setCmimi(event.target.value);
@@ -67,6 +97,9 @@ export default function AddArticles(props) {
     setDescription(event.target.value);
   };
 
+  const onSelectChange = (event) => {
+    setSelectedRes(event.target.value);
+  };
 
   //#endregion
 
@@ -100,6 +133,27 @@ export default function AddArticles(props) {
             onChange={onNumberText}
           />
 
+          <FormControl variant="outlined" className={classes.form}>
+            <InputLabel id="demo-simple-select-outlined-label">
+              Restaurant
+            </InputLabel>
+
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              required
+              id="demo-simple-select-outlined"
+              label="Restaurant"
+              onChange={onSelectChange}
+              defaultValue=""
+            >
+              {restaurants.map((res) => (
+                <MenuItem key={res.id} value={res.menuId}>
+                  {res.description}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
           <Button
             type="submit"
             fullWidth
@@ -114,4 +168,6 @@ export default function AddArticles(props) {
       </div>
     </Container>
   );
-}
+};
+
+export default AddArticles;
