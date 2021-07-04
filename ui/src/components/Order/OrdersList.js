@@ -19,8 +19,21 @@ export default class OrdersList extends Component {
 		this.fillOrdersList();
 	};
 
-	onAcceptClick = (event, id) => {
+	onAcceptClick = async (event, order) => {
 		event.preventDefault();
+		const accountTypeId = localStorage.getItem("accountTypeId");
+		console.log(order);
+		if (accountTypeId == 1) {
+			if (!order.acceptDate && order.pickUpDate) {
+				await this.ordererAccept(order.id);
+				await this.fillOrdersList();
+			}
+		} else if (accountTypeId == 2) {
+			if (!order.acceptDate && !order.pickUpDate) {
+				await this.deliveryAccept(order.id);
+				await this.fillOrdersList();
+			}
+		}
 	};
 	render() {
 		return (
@@ -52,10 +65,7 @@ export default class OrdersList extends Component {
 								<TableCell>
 									<button
 										onClick={(event) =>
-											this.onAcceptClick(
-												event,
-												element.id
-											)
+											this.onAcceptClick(event, element)
 										}
 									>
 										ACCEPT
@@ -80,5 +90,21 @@ export default class OrdersList extends Component {
 		if (response && response.data) {
 			this.setState({ ordersList: response.data });
 		}
+	};
+
+	ordererAccept = (orderId) => {
+		client
+			.get("Order/ordererAccept", { params: { orderId } })
+			.then((response) => console.log(response.data))
+			.catch((error) => console.error(error.response.data));
+	};
+
+	deliveryAccept = (orderId) => {
+		client
+			.get("Order/deliveryAccept", {
+				params: { orderId, userId: localStorage.getItem("userId") },
+			})
+			.then((response) => console.log(response.data))
+			.catch((error) => console.error(error.response.data));
 	};
 }
