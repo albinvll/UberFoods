@@ -440,3 +440,13 @@ BEGIN
 			)
 		OR P.DerguesiID IS NULL
 END
+
+
+CREATE PROCEDURE DeleteArtikulliById_sp(
+	@ArtikulliId bigint
+)
+AS
+BEGIN
+	DELETE FROM ArtikujtMenus where ArtikulliId = @ArtikulliId
+	DELETE FROM ArtikujtMenus where Id = @ArtikulliId
+END

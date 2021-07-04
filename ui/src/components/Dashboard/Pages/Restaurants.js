@@ -54,12 +54,6 @@ export class Restaurants extends Component {
     this.fetchRestaurantsBasedOnCorpId();
   };
 
-  onRestaurantClick =(event,id)=>{
-    event.preventDefault();
-    this.props.history.push("/dashboard/restaurants/foods",{
-      menuId: id
-    })
-  }
   render() {
     return (
       <div>
@@ -85,7 +79,7 @@ export class Restaurants extends Component {
             </TableHead>
             <TableBody>
               {this.state.restaurants.map((res) => (
-                <TableRow key={res.id} onClick={(event)=> this.onRestaurantClick(event,res.menuId)}>
+                <TableRow key={res.id}>
                   <TableCell>
                     <strong>{res.id}</strong>
                   </TableCell>

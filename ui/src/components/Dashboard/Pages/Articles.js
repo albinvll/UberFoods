@@ -17,11 +17,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Articles = () => {
+const Articles = (props) => {
   const classes = useStyles();
   const [restaurants, setRestaurants] = useState([]);
   const [selectedRes, setSelectedRes] = useState(0);
   const [articles, setArticles] = useState([]);
+
+
+  const onDeleteClickButton = (event, id) =>{
+    event.preventDefault();
+    deleteArticleById(id);
+  }
+
+  const deleteArticleById = async(id)=>{
+    const response = await client.delete("Articles/deleteArtikulliById",{
+      params:{
+        artikulliId: id
+      }
+    })
+    props.history.push("/dashboard");
+  }
 
   const fetchFoodsfromMenuId= async() =>{
     const response = await client.get("/Articles/getArticlesFromRestaurantId",{
@@ -95,7 +110,7 @@ const Articles = () => {
         </div>
         <div className="food-action">
           <button id="foodpage-action">Edit</button>
-          <button id="foodpage-action">Delete</button>
+          <button id="foodpage-action" onClick={(event)=>onDeleteClickButton(event, article.id)}>Delete</button>
         </div>
       </div>
       

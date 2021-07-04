@@ -68,5 +68,11 @@ namespace UberFoodsAPI.Controllers
         {
             ArticlesData.InsertArtikulliMenus(artikulliMenus.Article, artikulliMenus.MenuId);
         }
+
+        [HttpDelete("deleteArtikulliById")]
+        public void DeleteArtikulliById(int artikulliId)
+        {
+            ArticlesData.DeleteArticleById(artikulliId);
+        }
     }
 }
