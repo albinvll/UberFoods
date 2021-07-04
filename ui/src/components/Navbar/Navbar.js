@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { MenuItems } from "./MenuItems";
+import { menuItems } from "./MenuItems";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { isLoggedIn } from "../../Auth";
@@ -8,9 +8,9 @@ class Navbar extends PureComponent {
 	state = {
 		clicked: false,
 	};
-  componentDidMount=()=>{
-    this.setState({isLoggedIn:isLoggedIn()})
-  }
+	componentDidMount = () => {
+		this.setState({ isLoggedIn: isLoggedIn() });
+	};
 
 	handleClick = () => {
 		this.setState({ clicked: !this.state.clicked });
@@ -36,7 +36,7 @@ class Navbar extends PureComponent {
 						this.state.clicked ? "nav-menu active" : "nav-menu"
 					}
 				>
-					{MenuItems.map((item, index) => (
+					{menuItems().map((item, index) => (
 						<Link
 							to={item.url}
 							style={{ textDecoration: "none" }}
