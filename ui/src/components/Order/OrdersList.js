@@ -33,6 +33,7 @@ export default class OrdersList extends Component {
 						<TableCell>Preparation Date</TableCell>
 						<TableCell>Pick up Date</TableCell>
 						<TableCell>Accept Date</TableCell>
+						<TableCell>ACCEPT </TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

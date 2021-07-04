@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace UberFoodsAPI.Controllers{
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class OrderController : ControllerBase {
         [HttpPost("finishOrder")]
