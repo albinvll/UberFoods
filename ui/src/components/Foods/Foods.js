@@ -37,7 +37,7 @@ const Foods = (props) => {
 					<p>Choose the food you love the most!</p>
 
 					{products.length>0 ? products.map((food) => (
-						<Food key={food.id} foodData={food} />
+						<Food key={food.id} foodData={food} restaurantId={props?.location?.state?.restaurantId}/>
 					)):<></>}
 				</div>
 				<div className="foods-right-container">

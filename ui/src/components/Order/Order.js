@@ -89,88 +89,27 @@ class Order extends PureComponent {
 			<div>
 				{/*<Navbar />*/}
 				<section className="order-Main-Section">
-					<div className="order-left-side">
-						<h1 id="order-title">Order Food</h1>
-						<p id="order-desc">
-							Please full fill your informations below :
-						</p>
-						<br />
-						<form action="">
-							Full name
-							<input
-								id="order-input"
-								type="text"
-								value={this.state.personName}
-								onChange={this.onPersonNameText}
-							/>
-							City
-							<input
-								id="order-input"
-								type="text"
-								value={this.state.city}
-								onChange={this.onCityChangeText}
-							/>
-							Restaurants
-							<div>
-								<Dropdown>
-									<Dropdown.Toggle>
-										{this.state.selectedRestaurant ? (
-											this.state.selectedRestaurant
-												.description
-										) : (
-											<span>Choose</span>
-										)}
-									</Dropdown.Toggle>
-									<Dropdown.Menu>
-										{this.state.selectedLocation.length >
-										0 ? (
-											this.state.selectedLocation.map(
-												(entry, key) => (
-													<Dropdown.Item
-														key={key}
-														onClick={(e) =>
-															this.handleChangeRestaurant(
-																e,
-																entry
-															)
-														}
-													>
-														{entry.description}
-													</Dropdown.Item>
-												)
-											)
-										) : (
-											<></>
-										)}
-									</Dropdown.Menu>
-								</Dropdown>
-							</div>
-							Payment method
-							<select id="order-input-selected">
-								{this.state.paymentMethod.map((payment) => (
-									<option key={payment.id} value="">
-										{payment.pershkrimi}
-									</option>
-								))}
-							</select>
-							<div className="order-checkbox">
-								{this.state.availableArticles.map((food) => (
-									<label key={food.id} id="checkbox-label">
-										<input
-											onChange={(event) =>
-												this.handleChangeCheckBox(
-													event,
-													food
-												)
-											}
-											id="order-checkbox"
-											type="checkbox"
-										/>
-										{food.description}
-									</label>
-								))}
-							</div>
-						</form>
+					<p>Payment method</p>
+					<select id="order-input-selected">
+						{this.state.paymentMethod.map((payment) => (
+							<option key={payment.id} value="">
+								{payment.pershkrimi}
+							</option>
+						))}
+					</select>
+					<div className="order-checkbox">
+						{this.state.availableArticles.map((food) => (
+							<label key={food.id} id="checkbox-label">
+								<input
+									onChange={(event) =>
+										this.handleChangeCheckBox(event, food)
+									}
+									id="order-checkbox"
+									type="checkbox"
+								/>
+								{food.description}
+							</label>
+						))}
 					</div>
 
 					<div className="order-right-side">
@@ -219,7 +158,8 @@ class Order extends PureComponent {
 								{this.state.selectedSum &&
 								this.state.selectedSum > 0
 									? this.state.selectedSum
-									: ""} &euro;
+									: ""}{" "}
+								&euro;
 							</div>
 						</div>
 					</div>

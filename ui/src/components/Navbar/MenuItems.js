@@ -28,7 +28,7 @@ export const menuItems = () => {
 		{
 			title: "Sign in",
 			cName: "nav-links-mobile",
-			url: "/sign-in",
+			url: "/login",
 		},
 	];
 	const accountTypeId = localStorage.getItem("accountTypeId");

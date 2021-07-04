@@ -15,26 +15,25 @@ const Restaurant = ({ restaurantData, addToCart, props }) => {
 	const [value, setValue] = React.useState(5);
 
 	const notify = () => toast.success("Added to cart");
-	const onRestaurantClick = (event, id) => {
-    event.preventDefault();
+	const onRestaurantClick = (event, menuId, restaurantId) => {
+		event.preventDefault();
 		props.history.push("/foods", {
-			menuId: id,
+			menuId,
+			restaurantId,
 		});
 	};
 
 	return (
 		<div
 			className="food-container"
-			onClick={(event) => onRestaurantClick(event, restaurantData.menuId)}
+			onClick={(event) => onRestaurantClick(event, restaurantData.menuId,restaurantData.id)}
 		>
 			<div className="food-image">
 				<img src={RestaurantImg} alt="" style={{ width: "89%" }} />
 			</div>
 			<div className="food-desc">
 				<div className="food-desc-title">
-					<p>
-						{restaurantData.description}
-					</p>
+					<p>{restaurantData.description}</p>
 				</div>
 
 				<div className="food-desc-rating">
