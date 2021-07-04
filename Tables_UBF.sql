@@ -116,10 +116,9 @@ CREATE TABLE Porosia (
 	,Komenti VARCHAR(255)
 	,AdresaSekondare BIGINT
 	,Anuluar BIT
-	,CONSTRAINT [Fk_Porosia_Porositesi_PorositesiId] FOREIGN KEY (PorositesiId) REFERENCES Porositesi(Id)
-	,CONSTRAINT [Fk_Porosia_Derguesi_DerguesiId] FOREIGN KEY (DerguesiId) REFERENCES Derguesi(Id)
+	,CONSTRAINT [Fk_Porosia_Porositesi_PorositesiId] FOREIGN KEY (PorositesiId) REFERENCES Porositesi(PerdoruesiId)
+	,CONSTRAINT [Fk_Porosia_Derguesi_DerguesiId] FOREIGN KEY (DerguesiId) REFERENCES Derguesi(PerdoruesiId)
 	,CONSTRAINT [Fk_Porosia_Pika_PikaId] FOREIGN KEY (PikaId) REFERENCES Pika(Id)
-	,
 	)
 
 CREATE TABLE PorosiaDetale (

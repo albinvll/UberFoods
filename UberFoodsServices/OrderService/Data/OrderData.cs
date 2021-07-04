@@ -79,5 +79,58 @@ namespace OrderService.Data {
             long id = Convert.ToInt64(insert.ExecuteScalar());
             return id;
         }
+
+        public static void OrdererAccept(long orderId) {
+            SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);
+            SqlTransaction tran = default;
+            try {
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                OrdererAcceptCommand(orderId, cnn, tran);
+                tran.Commit();
+            } catch (Exception e) {
+                Console.Error.WriteLine(e.StackTrace);
+                tran.Rollback();
+                throw;
+            } finally {
+                cnn.Close();
+            }
+        }
+
+        private static void OrdererAcceptCommand(long orderId, SqlConnection cnn, SqlTransaction tran) {
+            SqlCommand update = new SqlCommand("PorositesiPrano_sp", cnn, tran)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            update.Parameters.AddWithValue("@PorosiaId", orderId);
+            update.ExecuteNonQuery();
+        }
+        public static void DeliveryAccept(long orderId,long userId) {
+            SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);
+            SqlTransaction tran = default;
+            try {
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                DeliveryAcceptCommand(orderId,userId, cnn, tran);
+                tran.Commit();
+            } catch (Exception e) {
+                Console.Error.WriteLine(e.StackTrace);
+                tran.Rollback();
+                throw;
+            } finally {
+                cnn.Close();
+            }
+        }
+
+        private static void DeliveryAcceptCommand(long orderId,long userId, SqlConnection cnn, SqlTransaction tran) {
+            SqlCommand update = new SqlCommand("DerguesiPrano_sp", cnn, tran)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            update.Parameters.AddWithValue("@PorosiaId", orderId);
+            update.Parameters.AddWithValue("@DerguesiId", userId);
+            update.ExecuteNonQuery();
+        }
     }
 }

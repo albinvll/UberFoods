@@ -13,8 +13,8 @@ namespace UberFoodsAPI.Controllers{
     [ApiController]
     public class OrderController : ControllerBase {
         [HttpPost("finishOrder")]
-        public IActionResult FinishOrder([FromBody]CompleteOrder order) {
-            if (ModelState.IsValid) { 
+        public IActionResult FinishOrder([FromBody] CompleteOrder order) {
+            if (ModelState.IsValid) {
             }
             try {
                 OrderData.InsertOrder(order);
@@ -24,12 +24,12 @@ namespace UberFoodsAPI.Controllers{
             }
         }
         [HttpGet("getOrdersListForAccount")]
-        public IActionResult GetOrdersList([FromQuery]int userId, int accountTypeId){
+        public IActionResult GetOrdersList([FromQuery] int userId, int accountTypeId) {
             try {
                 DataTable ordersListTable;
                 if (accountTypeId == 1) {
                     ordersListTable = OrderData.GetOrdererOrdersList(userId);
-                } else { 
+                } else {
                     ordersListTable = OrderData.GetDeliveryOrdersList(userId);
                 }
                 List<OrderListItem> orderListItems = new List<OrderListItem>(ordersListTable.Rows.Count);
@@ -58,10 +58,30 @@ namespace UberFoodsAPI.Controllers{
                     }
                     orderListItems.Add(orderListItem);
                 }
-            return Ok(orderListItems);
+                return Ok(orderListItems);
 
             } catch (Exception) {
                 return BadRequest("ERROR");
+            }
+
+
+        }
+        [HttpGet("ordererAccept")]
+        public IActionResult OrdererAccept([FromQuery] long orderId) {
+            try {
+                OrderData.OrdererAccept(orderId);
+                return Ok("Ok");
+            } catch (Exception e) {
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpGet("deliveryAccept")]
+        public IActionResult DeliveryAccept([FromQuery] long orderId,long userId) {
+            try {
+                OrderData.DeliveryAccept(orderId,userId);
+                return Ok("Ok");
+            } catch (Exception e) {
+                return BadRequest(e.Message);
             }
         }
     }
