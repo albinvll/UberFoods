@@ -25,7 +25,7 @@ const Restaurant = ({ restaurantData, addToCart, props }) => {
 	return (
 		<div
 			className="food-container"
-			onClick={(event) => onRestaurantClick(event, restaurantData.id)}
+			onClick={(event) => onRestaurantClick(event, restaurantData.menuId)}
 		>
 			<div className="food-image">
 				<img src={RestaurantImg} alt="" style={{ width: "89%" }} />
