@@ -408,7 +408,7 @@ BEGIN
 		)
 END
 
-CREATE PROCEDURE PorositesiOrderListSelect (@PorositesiId BIGINT = NULL)
+CREATE PROCEDURE PorositesiOrderListSelect_sp (@PorositesiId BIGINT = NULL)
 AS
 BEGIN
 	SELECT P.Id

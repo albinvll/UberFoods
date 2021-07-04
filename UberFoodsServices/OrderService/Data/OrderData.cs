@@ -9,6 +9,27 @@ using UberFoodsAPI.Models;
 
 namespace OrderService.Data {
     public static class OrderData {
+        public static DataTable GetOrdererOrdersList(int userId) {
+            string storedProcedure = "PorositesiOrderListSelect_sp";
+            DataTable table = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(storedProcedure, PublicClass.ConnectionString);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddWithValue("@PorositesiId", userId);
+            da.Fill(table);
+            return table;
+        }
+
+        public static DataTable GetDeliveryOrdersList(int userId) {
+            string storedProcedure = "DerguesiOrderListSelect_sp";
+            DataTable table = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(storedProcedure, PublicClass.ConnectionString);
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            da.SelectCommand.Parameters.AddWithValue("@DerguesiId", userId);
+            da.Fill(table);
+            return table;
+        }
+
+
         public static void InsertOrder(CompleteOrder completeOrder) {
             SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);
             SqlTransaction tran = default;
