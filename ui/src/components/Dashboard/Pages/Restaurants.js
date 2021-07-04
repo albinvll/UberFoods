@@ -17,18 +17,14 @@ import { Link } from "@material-ui/core";
 import client from "../../../axios";
 
 export class Restaurants extends Component {
+  constructor(props){
+    super(props);
+  }
   state = {
     restaurants: [],
   };
 
-  handleOpen = () => {
-    this.setState({ setOpen: true });
-  };
-
-  handleClose = () => {
-    this.setState({ setOpen: false });
-  };
-
+  //#region DELETEAPI
   deleteRestaurantById = async (id, menuId) =>{
     const response = await client.delete("Restaurant/deleteRestaurantById",{
       params:{
@@ -37,12 +33,13 @@ export class Restaurants extends Component {
       }
     })
   }
-
   onClickDeleteRestaurant = (event,id, menuId) =>{
     event.preventDefault();
     this.deleteRestaurantById(id, menuId);
   }
-
+  //#endregion
+  
+  //#region FETCHRESTAURANTS API
   fetchRestaurantsBasedOnCorpId = async () => {
     const currentCorpId = parseInt(localStorage.getItem("corporateId"));
     const response = await client.get("Restaurant/getRestaurantFromCorpId", {
@@ -51,12 +48,18 @@ export class Restaurants extends Component {
       },
     });
     this.setState({ restaurants: response.data });
-    console.log(response.data)
   };
+  //#endregion
   componentDidMount = () => {
     this.fetchRestaurantsBasedOnCorpId();
   };
 
+  onRestaurantClick =(event,id)=>{
+    event.preventDefault();
+    this.props.history.push("/dashboard/restaurants/foods",{
+      menuId: id
+    })
+  }
   render() {
     return (
       <div>
@@ -77,14 +80,12 @@ export class Restaurants extends Component {
                 <TableCell>ID</TableCell>
                 <TableCell>#</TableCell>
                 <TableCell>Restaurant Name</TableCell>
-                <TableCell>Added Date</TableCell>
-                <TableCell>Location</TableCell>
                 <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {this.state.restaurants.map((res) => (
-                <TableRow key={res.id}>
+                <TableRow key={res.id} onClick={(event)=> this.onRestaurantClick(event,res.menuId)}>
                   <TableCell>
                     <strong>{res.id}</strong>
                   </TableCell>
@@ -93,12 +94,6 @@ export class Restaurants extends Component {
                   </TableCell>
                   <TableCell>
                     <strong>{res.description}</strong>
-                  </TableCell>
-                  <TableCell>
-                    <strong>{res.dateCreated}</strong>
-                  </TableCell>
-                  <TableCell>
-                    <strong>{res.address}</strong>
                   </TableCell>
                   <TableCell>
                     {/* action buttons*/}

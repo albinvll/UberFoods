@@ -62,5 +62,11 @@ namespace UberFoodsAPI.Controllers
 
             return articleList;
         }
+
+        [HttpPost("insertArtikulli")]
+        public void InsertArtkulli(Article article, int MenuId)
+        {
+            ArticlesData.InsertArtikulliMenus(article, MenuId);
+        }
     }
 }

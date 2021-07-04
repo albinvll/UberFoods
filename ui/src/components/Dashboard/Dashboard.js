@@ -31,7 +31,6 @@ export class RestaurantDashboard extends Component {
                         </Switch>
                     </div>
                 </div>
-                        
             </Router>
         )   
     }

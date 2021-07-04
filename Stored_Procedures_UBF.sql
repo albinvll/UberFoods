@@ -306,8 +306,24 @@ CREATE PROCEDURE DeleteRestaurntById_sp(
 )
 AS
 BEGIN
-	DELETE FROM Menu where Id = @MenuId
 	DELETE FROM PIKA WHERE Id = @RestaurantId
+	DELETE FROM Menu where Id = @MenuId
 END
 
 
+
+
+
+CREATE PROCEDURE InsertArtikulliMenus_sp(
+	@Pershkrimi varchar(255),
+	@Cmimi decimal(18,2),
+	@MenuId bigint
+)
+AS 
+BEGIN
+	DECLARE @ArtikulliRi BIGINT
+	INSERT INTO Artikulli VALUES(@Pershkrimi, @Cmimi)
+	SELECT @ArtikulliRi = MAX(Id) FROM Artikulli
+
+	INSERT INTO ArtikujtMenus VALUES(@ArtikulliRi, @MenuId)
+END

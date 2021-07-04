@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using UberFoodsAPI.Models;
 
 namespace UberFoodsAPI.Data
 {
@@ -34,6 +35,43 @@ namespace UberFoodsAPI.Data
             da.SelectCommand.CommandType = CommandType.StoredProcedure;
             da.Fill(table);
             return table;
+        }
+
+        public static void InsertArtikulliMenus(Article article, int MenuId)
+        {
+            SqlConnection cnn = new SqlConnection(PublicClass.ConnectionString);
+            SqlTransaction tran = default;
+
+            try
+            {
+                cnn.Open();
+                tran = cnn.BeginTransaction();
+                InsertArtikulliMenusCommand(article, MenuId, cnn, tran);
+                tran.Commit();
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.StackTrace);
+                tran.Rollback();
+                throw;
+            }
+            finally
+            {
+                cnn.Close();
+            }
+        }
+
+        public static void InsertArtikulliMenusCommand(Article article, int MenuId, SqlConnection cnn, SqlTransaction tran)
+        {
+            SqlCommand insert = new SqlCommand("InsertArtikulliMenus_sp", cnn, tran)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+
+            insert.Parameters.AddWithValue("@Pershkrimi", article.Description);
+            insert.Parameters.AddWithValue("@Cmimi", article.Price);
+            insert.Parameters.AddWithValue("@MenuId", MenuId);
+            insert.ExecuteNonQuery();
         }
     }
 }
