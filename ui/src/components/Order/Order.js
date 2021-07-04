@@ -84,6 +84,8 @@ class Order extends PureComponent {
 			.post("Order/finishOrder", order)
 			.then((response) => {
 				console.log("Ok");
+				localStorage.removeItem("orderedRestaurantId");
+
 				this.props.history.push("/");
 			})
 			.catch((error) => console.log(error));

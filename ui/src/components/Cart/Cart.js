@@ -39,6 +39,9 @@ const Cart = ({ cart }) => {
 	const [totalItems, setTotalItems] = useState(0);
 
 	useEffect(() => {
+		if (cart.length === 0) {
+			localStorage.removeItem("orderedRestaurantId");
+		}
 		let items = 0;
 		let price = 0;
 
