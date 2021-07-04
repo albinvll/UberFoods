@@ -64,9 +64,9 @@ namespace UberFoodsAPI.Controllers
         }
 
         [HttpPost("insertArtikulli")]
-        public void InsertArtkulli(Article article, int MenuId)
+        public void InsertArtkulli(ArtikulliMenus artikulliMenus)
         {
-            ArticlesData.InsertArtikulliMenus(article, MenuId);
+            ArticlesData.InsertArtikulliMenus(artikulliMenus.Article, artikulliMenus.MenuId);
         }
     }
 }

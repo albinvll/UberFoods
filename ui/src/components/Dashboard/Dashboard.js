@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route, withRouter} from 'react-router-d
 import DashboardPage from './Pages/DashboardPage';
 import './Dashboard.css'
 import Restaurants from './Pages/Restaurants';
+import Articles from './Pages/Articles';
 
 export class RestaurantDashboard extends Component {
 
@@ -28,6 +29,7 @@ export class RestaurantDashboard extends Component {
                         <Switch>
                             <Route path="/resDashboard" component={DashboardPage}/>
                             <Route path="/resRestaurants" component={Restaurants}/>
+                            <Route path="/articles" component={Articles}/>
                         </Switch>
                     </div>
                 </div>
