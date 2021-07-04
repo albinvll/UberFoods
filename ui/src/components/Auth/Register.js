@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import {
   Container,
   Avatar,
@@ -52,6 +52,12 @@ export default function Register(props) {
   const [coDescription, setCoDescription] = useState("");
   const [coEmail, setCoEmail] = useState("");
   const [coCity, setCoCity] = useState("");
+
+  useEffect(() => {
+    if(localStorage.getItem("userId")){
+      props.history.push("/");
+    }
+  }, [])
 
   //#region ONCHANGE
 
