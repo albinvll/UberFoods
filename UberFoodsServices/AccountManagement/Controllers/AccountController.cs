@@ -60,7 +60,7 @@ namespace AccountManagement.Controllers
         }
 
         [HttpGet("getUserById")]
-        public List<Account> GetUserById([FromQuery] int userId)
+        public List<Account> GetUserById([FromQuery] long userId)
         {
             DataTable userTable = AccountData.GetUserById(userId);
             List<Account> userList = new List<Account>(userTable.Rows.Count);
@@ -68,7 +68,6 @@ namespace AccountManagement.Controllers
             foreach(DataRow dr in userTable.Rows)
             {
                 Account temp = new Account();
-                temp.Id = (int?)Convert.ToInt64(dr["Id"].ToString());
                 temp.Name = dr["Emri"].ToString();
                 temp.Surname = dr["Mbiemri"].ToString();
                 temp.Email = dr["Email"].ToString();

@@ -155,7 +155,7 @@ namespace AccountManagement.Data
             insert.ExecuteNonQuery();
         }
 
-        public static DataTable GetUserById(int userId)
+        public static DataTable GetUserById(long userId)
         {
             DataTable table = new DataTable();
             SqlDataAdapter da = new SqlDataAdapter("GetUserById_sp", PublicClass.ConnectionString);

@@ -20,7 +20,7 @@ namespace AccountManagement.Models
             Password = account.Password;
         }
 
-        public int? Id { get; set; }
+        public long? Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }

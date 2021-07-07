@@ -22,8 +22,8 @@ CREATE TABLE MenyraPageses (
 	)
 
 CREATE TABLE Porositesi (
-	Id BIGINT PRIMARY KEY IDENTITY(100, 25) NOT NULL
-	,PerdoruesiId BIGINT NOT NULL
+	Id BIGINT IDENTITY(100, 25) NOT NULL
+	,PerdoruesiId BIGINT PRIMARY KEY NOT NULL
 	,MenyraPagesesId INT NOT NULL
 	,CONSTRAINT [FK_Porositesi_Perdoruesi_PerdoruesiId] FOREIGN KEY (PerdoruesiId) REFERENCES Perdoruesi(Id)
 	,CONSTRAINT [FK_Porositesi_MenyraPageses_MenyraPagesesId] FOREIGN KEY (MenyraPagesesId) REFERENCES MenyraPageses(Id)
@@ -35,20 +35,12 @@ CREATE TABLE MenyraDergeses (
 	)
 
 CREATE TABLE Derguesi (
-	Id BIGINT PRIMARY KEY IDENTITY(100, 25) NOT NULL
-	,PerdoruesiId BIGINT NOT NULL
+	Id BIGINT IDENTITY(100, 25) NOT NULL
+	,PerdoruesiId BIGINT PRIMARY KEY NOT NULL
 	,MenyraDergesesId INT NOT NULL
 	,Rating DECIMAL(18, 2)
 	,CONSTRAINT [FK_Derguesi_Perdoruesi_PerdoruesiId] FOREIGN KEY (PerdoruesiId) REFERENCES Perdoruesi(Id)
 	,CONSTRAINT [FK_Derguesi_MenyraDergeses_MenyraDergesesId] FOREIGN KEY (MenyraDergesesId) REFERENCES MenyraDergeses(Id)
-	)
-
-CREATE TABLE Menaxhuesi (
-	Id BIGINT PRIMARY KEY IDENTITY(100, 25) NOT NULL
-	,PerdoruesiId BIGINT NOT NULL
-	,KorporataId BIGINT NOT NULL
-	,CONSTRAINT [FK_Menaxhuesi_Perdoruesi_PerdoruesiId] FOREIGN KEY (PerdoruesiId) REFERENCES Perdoruesi(Id)
-	,CONSTRAINT [Fk_Menaxhuesi_Korporata_KorporataId] FOREIGN KEY (KorporataId) REFERENCES Korporata(Id)
 	)
 
 CREATE TABLE Korporata (
@@ -60,6 +52,15 @@ CREATE TABLE Korporata (
 	,Komuna VARCHAR(255) NOT NULL
 	,
 	)
+	
+CREATE TABLE Menaxhuesi (
+	Id BIGINT IDENTITY(100, 25) NOT NULL
+	,PerdoruesiId BIGINT PRIMARY KEY NOT NULL
+	,KorporataId BIGINT NOT NULL
+	,CONSTRAINT [FK_Menaxhuesi_Perdoruesi_PerdoruesiId] FOREIGN KEY (PerdoruesiId) REFERENCES Perdoruesi(Id)
+	,CONSTRAINT [Fk_Menaxhuesi_Korporata_KorporataId] FOREIGN KEY (KorporataId) REFERENCES Korporata(Id)
+	)
+
 
 CREATE TABLE Artikulli (
 	Id BIGINT PRIMARY KEY IDENTITY(100, 25) NOT NULL
@@ -144,7 +145,7 @@ CREATE TABLE EkzekutimiPageses (
 	,KorporataId BIGINT NOT NULL
 	,MenyraDergesesId INT NOT NULL
 	,PorosiaId BIGINT NOT NULL
-	,CONSTRAINT [Fk_EkzekutimiPageses_Porositesi_PorositesiId] FOREIGN KEY (PorositesiId) REFERENCES Porositesi(Id)
+	,CONSTRAINT [Fk_EkzekutimiPageses_Porositesi_PorositesiId] FOREIGN KEY (PorositesiId) REFERENCES Porositesi(PerdoruesiId)
 	,CONSTRAINT [Fk_EkzekutimiPageses_Korporata_KorporataId] FOREIGN KEY (KorporataId) REFERENCES Korporata(Id)
 	,CONSTRAINT [Fk_EkzekutimiPageses_MenyraDergeses_MenyraDergesesId] FOREIGN KEY (MenyraDergesesId) REFERENCES MenyraDergeses(Id)
 	,CONSTRAINT [Fk_EkzekutimiPageses_Porosia_PorosiaId] FOREIGN KEY (PorosiaId) REFERENCES Porosia(Id)

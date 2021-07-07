@@ -2,7 +2,7 @@
   "name": "uberfoods",
   "version": "1.0.0",
   "private": true,
-  "proxy": "http://localhost:7000",
+  "proxy": "http://localhost:7000/api/",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
