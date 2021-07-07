@@ -33,9 +33,10 @@ export class Restaurants extends Component {
       }
     })
   }
-  onClickDeleteRestaurant = (event,id, menuId) =>{
+  onClickDeleteRestaurant = async(event,id, menuId) =>{
     event.preventDefault();
-    this.deleteRestaurantById(id, menuId);
+    await this.deleteRestaurantById(id, menuId);
+    await this.fetchRestaurantsBasedOnCorpId();
   }
   //#endregion
   

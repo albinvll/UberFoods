@@ -37,7 +37,7 @@ const AddArticles = (props) => {
   const [description, setDescription] = useState("");
   const [cmimi, setCmimi] = useState("");
   const [restaurants, setRestaurants] = useState([]);
-  const [selectedRes, setSelectedRes] = useState(0);
+  const [selectedRes, setSelectedRes] = useState(null);
 
   const insertArticle = async () => {
     const response = await client.post("Articles/insertArtikulli", {
@@ -64,7 +64,7 @@ const AddArticles = (props) => {
   const onSubmitClick = async (event) => {
     event.preventDefault();
     try {
-      if (description != "" && cmimi != "") {
+      if (description != "" && cmimi != "" && selectedRes) {
         insertArticle();
         props.history.push("/dashboard");
       } else {
@@ -131,10 +131,10 @@ const AddArticles = (props) => {
             <Select
               labelId="demo-simple-select-outlined-label"
               required
+              value={selectedRes}
               id="demo-simple-select-outlined"
               label="Restaurant"
               onChange={onSelectChange}
-              defaultValue=""
             >
               {restaurants.map((res) => (
                 <MenuItem key={res.id} value={res.menuId}>

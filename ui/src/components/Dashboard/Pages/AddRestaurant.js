@@ -37,7 +37,7 @@ export default function AddRestaurant(props) {
 
 
   const validateName = () =>{
-    if(name.length<=0){
+    if(name.trim().length === ""){
       return false;
     }else{
       return true;
@@ -45,7 +45,7 @@ export default function AddRestaurant(props) {
   }
 
   const validateAddress = () =>{
-    if(address.length<=0){
+    if(address.trim().length === ""){
       return false;
     }else{
       return true;
@@ -53,7 +53,7 @@ export default function AddRestaurant(props) {
   }
 
   const validateNumber = () =>{
-    if(number.length<=0){
+    if(number.trim().length === ""){
       return false;
     }else{
       return true;

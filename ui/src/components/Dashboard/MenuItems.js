@@ -11,11 +11,6 @@ const MenuItems=[
     [
         /*Restaurant Manager*/
         {
-            title: 'Dashboard',
-            url:'resDashboard',
-            icon: <DashboardIcon/>
-        },
-        {
             title: 'Restaurants',
             url:'resRestaurants',
             icon:<RestaurantIcon/>
@@ -24,11 +19,6 @@ const MenuItems=[
             title: 'Articles',
             url:'articles',
             icon:<FastfoodIcon/>
-        },
-        {
-            title: 'Notifications',
-            url:'resNotifications',
-            icon:<Badge color="secondary" badgeContent={5}><NotificationsIcon/></Badge>
         },
         {
             title: 'Profile',

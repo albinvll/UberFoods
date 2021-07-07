@@ -26,18 +26,6 @@ class Hero extends PureComponent {
 						"People who love to eat are <br /> always the best
 						people"
 					</p>
-					<div id="inputButton">
-						<input
-							value={this.state.searchString}
-							placeholder="Search for food"
-							id="searchInput"
-							onChange={this.onSearchStringChange}
-						/>
-						<button id="searchButton" onClick={this.onCheckFoodClick}>
-							Search
-						</button>
-						<ToastContainer/>
-					</div>
 				</div>
 			</div>
 		);

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Restaurant from "./Restaurant";
 import "../Foods/Foods.css";
 import Navbar from "../Navbar/Navbar";
-import { Link } from "react-router-dom";
 import client from "../../axios";
 
-import { connect } from "react-redux";
+import {useSelector } from "react-redux";
 
 const RestaurantList = (props) => {
 	const [restaurants, setRestaurants] = useState([]);
+	const cartState = useSelector((state) => state.food.cart);
 
 	const fetchData = async () => {
 		await client.get("Restaurant/getRestaurant").then((res) => {
@@ -17,6 +17,9 @@ const RestaurantList = (props) => {
 	};
 
 	useEffect(() => {
+		if (cartState.length === 0) {
+			localStorage.removeItem("orderedRestaurantId");
+		}
 		fetchData();
 	}, []);
 	return (
