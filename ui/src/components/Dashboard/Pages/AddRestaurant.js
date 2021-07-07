@@ -8,6 +8,8 @@ import {
   makeStyles,
 } from "@material-ui/core/";
 import client from "../../../axios";
+import { Alert } from 'rsuite';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -90,7 +92,7 @@ export default function AddRestaurant(props) {
         createRestaurant();
         props.history.push("/dashboard")
       } else {
-        alert("Empty fields!");
+        Alert.warning("Empty fields!");
       }
     } catch (error) {
       console.error(error);

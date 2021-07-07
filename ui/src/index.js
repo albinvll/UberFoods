@@ -10,6 +10,7 @@ import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import 'rsuite/lib/styles/index.less';
 
 
 const rootElement = document.getElementById("root");

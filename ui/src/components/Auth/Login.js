@@ -17,6 +17,7 @@ import {
 } from "@material-ui/core/";
 import client from "../../axios";
 import * as auth from "../../Auth";
+import { Alert } from 'rsuite';
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -77,11 +78,12 @@ export default function Login(props) {
 		}
 	};
 
+
 	const onLoginButtonClick = (event) => {
 		event.preventDefault();
 
 		if (email === "" || password === "") {
-			alert("Some of your informations are empty");
+			Alert.warning("Empty fields not allowed!");
 		} else {
 			submitLogin();
 		}
@@ -105,6 +107,7 @@ export default function Login(props) {
 			}
 		} catch (error) {
 			console.error(error.response.data);
+			Alert.error("User not found!");
 		}
 	};
 
