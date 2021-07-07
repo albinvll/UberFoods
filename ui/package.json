@@ -1,8 +1,8 @@
 {
-  "name": "testapp",
-  "version": "0.1.0",
+  "name": "uberfoods",
+  "version": "1.0.0",
   "private": true,
-  "proxy": "https://localhost:44395",
+  "proxy": "http://localhost:7000",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",

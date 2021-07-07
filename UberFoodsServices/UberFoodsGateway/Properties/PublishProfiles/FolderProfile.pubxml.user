@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>E:\PUBLISHES\Gateway</_PublishTargetUrl>
+    <History>True|2021-07-07T19:54:18.7686869Z;True|2021-07-07T21:49:42.6677820+02:00;True|2021-07-07T21:31:39.3994256+02:00;True|2021-07-07T21:28:57.3035317+02:00;</History>
+  </PropertyGroup>
+</Project>

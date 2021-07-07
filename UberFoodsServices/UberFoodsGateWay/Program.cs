@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UberFoodsGateWay {
-    public class Program {
+namespace UberFoodsGateway {
+    public static class Program {
         public static void Main(string[] args) {
             CreateHostBuilder(args).Build().Run();
         }
@@ -18,6 +18,7 @@ namespace UberFoodsGateWay {
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                    webBuilder.ConfigureAppConfiguration(config => config.AddJsonFile($"ocelot.json"));
+                }).ConfigureLogging(logging=>logging.AddConsole());
     }
 }

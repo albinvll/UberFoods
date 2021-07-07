@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArticleManagement", "Articl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement", "AccountManagement\AccountManagement.csproj", "{8EB95A30-E366-4E8B-8160-1FB3C6151F68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UberFoodsGateWay", "UberFoodsGateWay\UberFoodsGateWay.csproj", "{5C32C57F-2287-4116-91F1-7AA1BFAF0B73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UberFoodsGateway", "UberFoodsGateway\UberFoodsGateway.csproj", "{CDDD7A2D-4F78-4477-8458-66909A0E0064}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{8EB95A30-E366-4E8B-8160-1FB3C6151F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EB95A30-E366-4E8B-8160-1FB3C6151F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EB95A30-E366-4E8B-8160-1FB3C6151F68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C32C57F-2287-4116-91F1-7AA1BFAF0B73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C32C57F-2287-4116-91F1-7AA1BFAF0B73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C32C57F-2287-4116-91F1-7AA1BFAF0B73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C32C57F-2287-4116-91F1-7AA1BFAF0B73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDDD7A2D-4F78-4477-8458-66909A0E0064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDDD7A2D-4F78-4477-8458-66909A0E0064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDDD7A2D-4F78-4477-8458-66909A0E0064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDDD7A2D-4F78-4477-8458-66909A0E0064}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

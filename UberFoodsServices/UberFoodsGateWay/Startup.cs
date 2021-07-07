@@ -7,12 +7,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UberFoodsGateWay {
+namespace UberFoodsGateway {
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
@@ -26,17 +28,16 @@ namespace UberFoodsGateWay {
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UberFoodsGateWay", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "UberFoodsGateway", Version = "v1" });
             });
+            services.AddOcelot();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UberFoodsGateWay v1"));
-            }
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UberFoodsGateway v1"));
 
             app.UseHttpsRedirection();
 
@@ -48,6 +49,7 @@ namespace UberFoodsGateWay {
             {
                 endpoints.MapControllers();
             });
+            app.UseOcelot().Wait();
         }
     }
 }
