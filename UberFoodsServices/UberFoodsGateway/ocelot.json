@@ -17,7 +17,7 @@
       ]
     },
     {
-      "DownstreamPathTemplate": "/Article/{everything}",
+      "DownstreamPathTemplate": "/Articles/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -25,7 +25,7 @@
           "Port": 7002
         }
       ],
-      "UpstreamPathTemplate": "/api/Article/{everything}",
+      "UpstreamPathTemplate": "/api/Articles/{everything}",
       "UpstreamHttpMethod": [
         "Get",
         "Post",
